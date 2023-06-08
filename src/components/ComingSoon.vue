@@ -3,7 +3,7 @@
     <img src="../assets/stuckinlife.webp" />
     <p class="coming-soon__header">COMING SOON!</p>
     <span class="coming-soon__motto"
-      >A helping hand and a guide for those lost in life</span
+      >A helping hand and guidance for those lost in life</span
     >
   </div>
 </template>
