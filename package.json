@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "stuckinlife-storybook": "^0.0.1",
+    "stuckinlife-storybook": "^0.0.3",
     "vue": "^3.2.47"
   },
   "devDependencies": {
