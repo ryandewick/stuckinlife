@@ -1,0 +1,55 @@
+@import '/src/assets/mixins/breakpoints';
+@import '/src/assets/mixins/variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  background-color: $primary-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $heading-font-family;
+  line-height: $heading-line-height;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  @include tabletAndDesktop {
+    font-size: $h1-font-size-desktop;
+  }
+}
+
+h2 {
+  font-size: $h2-font-size;
+  @include tabletAndDesktop {
+    font-size: $h2-font-size-desktop;
+  }
+}
+
+h3 {
+  font-size: $h3-font-size;
+  @include tabletAndDesktop {
+    font-size: $h3-font-size-desktop;
+  }
+}
+
+h4, h5, h6 {
+  font-size: $h4-font-size;
+  @include tabletAndDesktop {
+    font-size: $h4-font-size-desktop;
+  }
+}
+
+p, span {
+  font-size: $p-font-size;
+  font-family: $p-font-family;
+  line-height: $p-line-height;
+}
