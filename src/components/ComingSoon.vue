@@ -10,6 +10,10 @@
   </div>
 </template>
 
+<script>
+export default {};
+</script>
+
 <style lang="scss" scoped>
 @import "src/assets/mixins/_variables.scss";
 @import "src/assets/mixins/_breakpoints.scss";

@@ -1,15 +1,5 @@
 <template>
   <div>
-    <coming-soon></coming-soon>
+    <router-view></router-view>
   </div>
 </template>
-
-<script>
-import ComingSoon from "./components/ComingSoon.vue";
-
-export default {
-  components: {
-    ComingSoon,
-  },
-};
-</script>

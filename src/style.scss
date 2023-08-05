@@ -50,6 +50,17 @@ h4, h5, h6 {
 
 p, span {
   font-size: $p-font-size;
-  font-family: $p-font-family;
   line-height: $p-line-height;
+}
+
+p, span, div, li, a, input, textarea, button {
+  font-family: $p-font-family;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
