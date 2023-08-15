@@ -1,13 +1,28 @@
 // router.js
 import { createRouter, createWebHistory } from "vue-router";
-import ComingSoon from "./src/components/ComingSoon.vue";
-import Home from "./src/pages/Home.vue";
+import ComingSoon from "@/components/ComingSoon.vue";
+import Home from "@/pages/Home.vue";
+import Courses from "@/pages/Courses.vue";
+import About from "@/pages/About.vue";
+import FAQ from "@/pages/FAQ.vue";
 
 const routes = [
   {
     path: "/",
     // redirect: "/coming-soon",
     component: Home,
+  },
+  {
+    path: "/courses",
+    component: Courses,
+  },
+  {
+    path: "/about-us",
+    component: About,
+  },
+  {
+    path: "/faq",
+    component: FAQ,
   },
   {
     path: "/coming-soon",
