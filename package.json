@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "stuckinlife-components": "^0.0.31",
+    "stuckinlife-components": "^0.0.33",
     "vue": "^3.2.47",
     "vue-router": "^4.2.4"
   },

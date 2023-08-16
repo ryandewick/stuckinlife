@@ -42,7 +42,7 @@ export default {
         },
       ],
       buttonText: {
-        name: "Hello there, Ryan Dewick!",
+        name: `Hello there,\nRyan Dewick!`,
         link: "/profile",
       },
     };
@@ -63,6 +63,7 @@ export default {
 
   @include desktop {
     position: relative;
+    white-space: pre-line;
   }
 }
 </style>
