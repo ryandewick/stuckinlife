@@ -59,6 +59,7 @@ export default {
   right: 0;
   left: 0;
   z-index: 50;
+  margin-top: -5px;
 
   @include desktop {
     position: relative;
