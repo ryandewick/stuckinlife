@@ -4,7 +4,8 @@
       <img src="../assets/stuckinlife.webp" />
       <h1 class="coming-soon__header">COMING SOON!</h1>
       <span class="coming-soon__motto"
-        >A helping hand and guidance for those lost in life</span
+        >Unlock Your Career Potential: Let's Find Your Perfect Match!</span
+      >
       >
     </div>
   </div>
@@ -20,7 +21,11 @@ export default {};
 
 img {
   filter: brightness(10) saturate(100%);
-  width: 200px;
+  width: 120px;
+
+  @include tabletAndDesktop {
+    width: 200px;
+  }
 }
 
 .coming-soon {
@@ -31,16 +36,11 @@ img {
   justify-content: center;
   &__header {
     color: white;
-    font-size: $h1-font-size;
     margin: 16px 0;
-    @include tabletAndDesktop {
-      font-size: $h1-font-size-desktop;
-    }
   }
 
   &__motto {
     color: white;
-    font-size: 2rem;
     text-align: center;
   }
 }
