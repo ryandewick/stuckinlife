@@ -5,7 +5,7 @@ import ComingSoon from "./src/components/ComingSoon.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/coming-soon",
+    // redirect: "/coming-soon",
   },
   {
     path: "/coming-soon",

@@ -4,7 +4,8 @@
       content ? `${content} | StuckInLife` : `StuckInLife`
     }}</template>
   </metainfo>
-  <router-view></router-view>
+  <ComingSoon />
+  <!-- <router-view></router-view> -->
   <footer class="coming-soon__footer">
     <a href="">
       <img src="./assets/Facebook.svg" alt="Facebook Logo" />
@@ -17,7 +18,11 @@
 
 <script>
 import { useMeta } from "vue-meta";
+import ComingSoon from "./components/ComingSoon.vue";
 export default {
+  components: {
+    ComingSoon,
+  },
   created() {
     useMeta({
       title: "StuckInLife - Unlock Your Career Potential",
