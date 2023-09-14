@@ -13,7 +13,7 @@
     >
       <img src="./assets/Facebook.svg" alt="Facebook Logo" />
     </a>
-    <a href="">
+    <a href="http://Www.twitter.com/_stuckinlife" target="_blank">
       <img src="./assets/TwitterX.svg" alt="TwitterX Logo" />
     </a>
   </footer>
