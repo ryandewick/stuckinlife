@@ -40,7 +40,11 @@
               placeholder="Enter your email"
               aria-label="Enter your email to be notified"
             />
-            <button type="submit" aria-label="Sign up to be notified">
+            <button
+              :disabled="isDisabled"
+              type="submit"
+              aria-label="Sign up to be notified"
+            >
               Sign up
             </button>
           </form>
@@ -72,12 +76,14 @@ export default {
       emailInput: null,
       formSuccess: false,
       formError: false,
+      isDisabled: false,
     };
   },
 
   methods: {
     async onSubmit() {
       try {
+        this.isDisabled = true;
         const { solution } = await this.botpoison.challenge();
         await axios.post("https://submit-form.com/EmaMVCle", {
           message: this.emailInput,
@@ -94,6 +100,7 @@ export default {
           this.formError = false;
         }, 3000);
       }
+      this.disabled = false;
     },
   },
 
