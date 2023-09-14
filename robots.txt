@@ -1,1 +1,2 @@
-Sitemap: https://stuckinlife.co.uk/sitemap.xml
+User-agent: *
+Allow: /
