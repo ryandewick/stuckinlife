@@ -7,7 +7,10 @@
   <ComingSoon />
   <!-- <router-view></router-view> -->
   <footer class="coming-soon__footer">
-    <a href="">
+    <a
+      href="https://www.facebook.com/people/Stuckinlife/61550921294265/"
+      target="_blank"
+    >
       <img src="./assets/Facebook.svg" alt="Facebook Logo" />
     </a>
     <a href="">
