@@ -213,6 +213,7 @@ export default {
       border: none;
       color: $light-color;
       width: 60%;
+      font-size: 16px;
 
       @include tabletAndDesktop {
         width: 80%;
@@ -234,6 +235,7 @@ export default {
       background: #9da9af;
       color: $light-color;
       width: 40%;
+      font-size: 16px;
       @include tabletAndDesktop {
         width: 20%;
       }
