@@ -63,14 +63,21 @@ body {
 }
 
 footer {
-  display: none;
   position: absolute;
   bottom: 0;
   right: 0;
-  padding: 2rem;
+  padding: 1rem;
+
+  img {
+    width: 30px;
+
+    @include tabletAndDesktop {
+      width: 60px;
+    }
+  }
 
   @include tabletAndDesktop {
-    display: block;
+    padding: 2rem;
   }
 }
 </style>

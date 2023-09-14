@@ -136,8 +136,12 @@ export default {
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 30px;
     margin-bottom: 8px;
+
+    @include tabletAndDesktop {
+      font-size: 36px;
+    }
   }
 
   h2 {
@@ -173,8 +177,12 @@ export default {
   }
 
   &__logo {
-    width: 140px;
+    width: 90px;
     margin-bottom: 8px;
+
+    @include tabletAndDesktop {
+      width: 140px;
+    }
   }
 
   &__launch {
