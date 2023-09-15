@@ -41,7 +41,7 @@ export default {
           content:
             "Unlock your career potential with StuckInLife. Discover careers tailored to your passions and strengths.",
         },
-        { property: "og:image", content: "./assets/stuckinlife.webp" },
+        { property: "og:image", content: "../public/favicon-32x32.png" },
         { property: "og:url", content: "https//stuckinlife.co.uk" },
       ],
     });
