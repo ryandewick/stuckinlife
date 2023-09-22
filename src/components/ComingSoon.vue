@@ -21,7 +21,7 @@
         <h2>Unlock your career potential: Let's find your perfect match!</h2>
         <p>
           Feeling lost in your career journey? We're here to guide you. We
-          analyze your profile to match you with careers tailored to your
+          analyse your profile to match you with careers tailored to your
           passions and strengths. Plus, get a handpicked list of courses to set
           you on the right track.
         </p>
