@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <sign-in-and-register />
-    <div v-if="user">
+    <div v-if="userProfile">
       <h1>Hello {{ userProfile.firstName }} {{ userProfile.lastName }}</h1>
     </div>
     <button v-if="user" @click="handleSignOut">Sign out</button>
