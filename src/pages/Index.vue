@@ -1,19 +1,23 @@
 <template>
   <div class="container">
-    <sign-in-and-register />
+    <sign-in />
+    <register v-if="!user" />
     <div v-if="userProfile">
       <h1>Hello {{ userProfile.firstName }} {{ userProfile.lastName }}</h1>
+      <span>{{ userProfile.dateOfBirth }}</span>
     </div>
     <button v-if="user" @click="handleSignOut">Sign out</button>
   </div>
 </template>
 
 <script>
-import { useAuthStore } from "../stores/authStore";
-import SignInAndRegister from "@/components/SignInAndRegister.vue";
+import { useAuthStore } from "@/stores/authStore";
+import Register from "@/components/Register.vue";
+import SignIn from "@/components/SignIn.vue";
 export default {
   components: {
-    SignInAndRegister,
+    Register,
+    SignIn,
   },
 
   computed: {

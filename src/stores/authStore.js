@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
-import { auth } from "../../firebase.config";
+import { auth, db } from "../../firebase.config";
 import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase.config";
 
 export const useAuthStore = defineStore({
   id: "auth",
+
   state() {
     return {
       user: null,
@@ -17,35 +18,8 @@ export const useAuthStore = defineStore({
       userProfile: null,
     };
   },
+
   actions: {
-    async validateEmailAndPassword(email, password) {
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-
-        // This is just for validation; the user will be created again in the final step
-        const currentUser = auth.currentUser;
-        if (currentUser) {
-          await currentUser.delete();
-        }
-      } catch (error) {
-        switch (error.code) {
-          case "auth/email-already-in-use":
-            this.authError = "This email is already in use.";
-            break;
-          case "auth/weak-password":
-            this.authError = "The password is too weak.";
-            break;
-          default:
-            this.authError = error.message;
-        }
-        console.error(
-          "Error in authStore validateEmailAndPassword:",
-          this.authError
-        );
-        throw error;
-      }
-    },
-
     async signUp(email, password, additionalData) {
       try {
         const userCredential = await createUserWithEmailAndPassword(
@@ -59,48 +33,25 @@ export const useAuthStore = defineStore({
         const userDocRef = doc(db, "users", this.user.uid);
         await setDoc(userDocRef, additionalData);
 
-        this.authError = null; // Clear any previous error
+        this.authError = null;
       } catch (error) {
-        switch (error.code) {
-          case "auth/email-already-in-use":
-            this.authError = "This email is already in use.";
-            break;
-          case "auth/weak-password":
-            this.authError = "The password is too weak.";
-            break;
-          default:
-            this.authError = error.message;
-        }
-        console.error("Error in authStore signUp:", this.authError);
-        throw error; // Re-throwing the error to handle it in the component if needed
+        this.handleAuthError(error);
+        throw error;
       }
     },
 
-    resetAuthError() {
-      this.authError = null;
-    },
-
-    initialiseAuth() {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in
-          this.user = user;
-          this.fetchUserProfile(); // Fetch the user's profile data
-        } else {
-          // User is signed out
-          this.user = null;
-          this.userProfile = null; // Clear the user's profile data
-        }
-      });
-    },
-
-    async fetchUserProfile() {
-      if (this.user) {
-        const userDocRef = doc(db, "users", this.user.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          this.userProfile = userDoc.data();
-        }
+    async signIn(email, password) {
+      try {
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        this.user = userCredential.user;
+        this.authError = null;
+      } catch (error) {
+        this.handleAuthError(error);
+        throw error;
       }
     },
 
@@ -115,6 +66,61 @@ export const useAuthStore = defineStore({
       }
     },
 
-    // ... other actions ...
+    // This is tracking if the user is logged in.
+    initialiseAuth() {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.user = user;
+          this.fetchUserProfile();
+        } else {
+          this.user = null;
+          this.userProfile = null;
+        }
+      });
+    },
+
+    async fetchUserProfile() {
+      if (this.user) {
+        const userDocRef = doc(db, "users", this.user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          this.userProfile = userDoc.data();
+        }
+      }
+    },
+
+    async updateUserProfile(uid, additionalData) {
+      try {
+        const userDocRef = doc(db, "users", uid);
+        await setDoc(userDocRef, additionalData, { merge: true });
+      } catch (error) {
+        console.error("Error updating user profile:", error);
+        throw error;
+      }
+    },
+
+    resetAuthError() {
+      this.authError = null;
+    },
+
+    handleAuthError(error) {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          this.authError = "This email is already in use.";
+          break;
+        case "auth/weak-password":
+          this.authError = "The password is too weak.";
+          break;
+        case "auth/user-not-found":
+          this.authError = "No user found with this email.";
+          break;
+        case "auth/wrong-password":
+          this.authError = "Incorrect password.";
+          break;
+        default:
+          this.authError = error.message;
+      }
+      console.error("Error in authStore:", this.authError);
+    },
   },
 });
