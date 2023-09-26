@@ -83,6 +83,7 @@ export default {
   }
 
   &__button {
+    z-index: 2;
     margin-top: 40px;
   }
 }

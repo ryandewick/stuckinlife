@@ -36,6 +36,7 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .s-button {
+  position: relative;
   padding: 8px 40px;
   width: 100%;
   font-size: 20px;

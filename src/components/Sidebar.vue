@@ -15,12 +15,12 @@
       <sign-in v-if="tabOpen === 'Sign In'" />
       <register v-if="tabOpen === 'Register'" />
     </div>
+    <img
+      class="sidebar__stuck-logo"
+      src="@/assets/transparent-logo.svg"
+      alt="stuckinlife logo"
+    />
   </div>
-  <img
-    class="sidebar__stuck-logo"
-    src="@/assets/transparent-logo.svg"
-    alt="stuckinlife logo"
-  />
 </template>
 
 <script>
@@ -70,14 +70,15 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .sidebar {
+  position: relative;
+  top: 0;
+  right: 0;
   height: 100dvh;
   width: 100%;
   overflow: hidden;
   background-color: $primary-color;
 
   @include tabletAndDesktop {
-    position: absolute;
-    right: 0;
     width: 400px;
   }
 
@@ -104,6 +105,10 @@ export default {
     &:hover {
       background-color: $secondary-color;
     }
+  }
+
+  img {
+    z-index: 1;
   }
 
   &__stuck-logo {

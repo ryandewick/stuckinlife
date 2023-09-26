@@ -35,9 +35,7 @@ export const useAuthStore = defineStore({
         await setDoc(userDocRef, additionalData);
 
         this.authError = null;
-        this.sidebarOpen = false;
       } catch (error) {
-        this.sidebarOpen = true;
         this.handleAuthError(error);
         throw error;
       }
@@ -52,9 +50,7 @@ export const useAuthStore = defineStore({
         );
         this.user = userCredential.user;
         this.authError = null;
-        this.sidebarOpen = false;
       } catch (error) {
-        this.sidebarOpen = true;
         this.handleAuthError(error);
         throw error;
       }

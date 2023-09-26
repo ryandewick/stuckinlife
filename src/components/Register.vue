@@ -68,6 +68,9 @@ export default {
     authError() {
       return useAuthStore().authError;
     },
+    sideBarOpen() {
+      return useAuthStore().sidebarOpen;
+    },
   },
   methods: {
     async signUp() {
@@ -92,8 +95,11 @@ export default {
           location: this.location,
           // ... other data properties ...
         });
+        useAuthStore().sidebarOpen = false;
+        window.location.reload();
         // this.step++;
       } catch (error) {
+        useAuthStore().sidebarOpen = true;
         console.error(error);
       }
     },
@@ -120,6 +126,7 @@ export default {
 }
 
 .s-button {
+  z-index: 2;
   margin-top: 40px;
 }
 

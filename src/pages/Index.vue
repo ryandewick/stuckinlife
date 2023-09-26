@@ -1,9 +1,16 @@
 <template>
   <div class="index">
-    <button @click="openSidebar">Open Sidebar</button>
     <sidebar v-if="sidebarOpen" />
-    <span>{{ userProfile }}</span>
     <div class="container">
+      <button v-if="!sidebarOpen && !user" @click="openSidebar">
+        Open Sidebar
+      </button>
+
+      <h3 v-if="userProfile?.firstName">
+        Hello {{ userProfile?.firstName }} {{ userProfile?.lastName }}
+      </h3>
+      <p v-if="userProfile?.location">Location: {{ userProfile?.location }}</p>
+
       <button v-if="user" @click="handleSignOut">Sign out</button>
     </div>
   </div>
