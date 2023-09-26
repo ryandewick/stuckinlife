@@ -1,29 +1,44 @@
 <template>
-  <div>
-    <h2>Sign In</h2>
+  <div class="sign-in">
+    <h4>Sign In</h4>
+    <form @submit.prevent="signIn">
+      <s-input
+        class="sign-in__email"
+        v-model="email"
+        type="email"
+        label="Email"
+        placeholder="Enter your email"
+      />
 
-    <input v-model="email" placeholder="Email" />
-    <input v-model="password" placeholder="Password" type="password" />
+      <s-input
+        v-model="password"
+        type="password"
+        label="Password"
+        placeholder=""
+      />
+      <span>{{ authError }}</span>
 
-    <p v-if="authError" class="error">{{ authError }}</p>
-
-    <button @click="signIn">Sign In</button>
-
-    <br />
-    <div>
-      <input v-model="firstName" placeholder="First Name" />
-      <input v-model="lastName" placeholder="Last Name" />
-      <input type="date" v-model="dateOfBirth" />
-      <!-- ... other fields ... -->
-      <button @click="updateUserProfile">Save Details</button>
-    </div>
+      <s-button
+        class="sign-in__button"
+        text="Login"
+        variant="secondary"
+        @click="signIn"
+      />
+    </form>
   </div>
 </template>
 
 <script>
-import { useAuthStore } from "../stores/authStore";
+import { useAuthStore } from "@/stores/authStore";
+
+import sInput from "./Input.vue";
+import sButton from "./Button.vue";
 
 export default {
+  components: {
+    sInput,
+    sButton,
+  },
   data() {
     return {
       email: "",
@@ -31,6 +46,7 @@ export default {
       firstName: "",
       lastName: "",
       dateOfBirth: null,
+      isOpen: true,
     };
   },
   computed: {
@@ -48,31 +64,30 @@ export default {
         console.error("Error during sign-in:", error.message);
       }
     },
-
-    async updateUserProfile() {
-      try {
-        await useAuthStore().updateUserProfile(useAuthStore().user.uid, {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          dateOfBirth: this.dateOfBirth,
-          // ... other data properties ...
-        });
-        alert(
-          "Profile updated successfully!",
-          this.firstName,
-          this.lastName,
-          this.dateOfBirth
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    },
   },
 };
 </script>
 
-<style scoped>
-.error {
-  color: red;
+<style lang="scss" scoped>
+@import "@/assets/mixins/_variables.scss";
+@import "@/assets/mixins/_breakpoints.scss";
+.sign-in {
+  h4 {
+    color: $light-color;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+
+  &__email {
+    margin-bottom: 12px;
+  }
+
+  &__button {
+    margin-top: 40px;
+  }
+}
+
+:deep(.s-input__label) {
+  color: $light-color;
 }
 </style>
