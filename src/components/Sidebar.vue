@@ -70,7 +70,7 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .sidebar {
-  position: relative;
+  position: absolute;
   top: 0;
   right: 0;
   height: 100dvh;
