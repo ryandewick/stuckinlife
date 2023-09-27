@@ -122,6 +122,7 @@ export default {
   }
 }
 .s-input {
+  z-index: 2;
   margin-bottom: 12px;
 }
 
