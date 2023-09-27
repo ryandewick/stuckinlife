@@ -47,6 +47,7 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .s-input {
+  position: relative;
   &__label {
     font-size: 16px;
   }

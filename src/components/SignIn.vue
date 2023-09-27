@@ -11,6 +11,7 @@
       />
 
       <s-input
+        class="sign-in__password"
         v-model="password"
         type="password"
         label="Password"
@@ -60,7 +61,10 @@ export default {
         await useAuthStore().signIn(this.email, this.password);
         // Optionally, redirect to a different page after successful sign-in
         // this.$router.push('/dashboard');
+        useAuthStore().sidebarOpen = false;
+        window.location.reload();
       } catch (error) {
+        useAuthStore().sidebarOpen = true;
         console.error("Error during sign-in:", error.message);
       }
     },
@@ -90,5 +94,9 @@ export default {
 
 :deep(.s-input__label) {
   color: $light-color;
+}
+
+.s-input {
+  z-index: 2;
 }
 </style>
