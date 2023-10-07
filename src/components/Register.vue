@@ -3,15 +3,23 @@
     <h4>Register</h4>
     <!-- Step 1: Email, Password & Confirm Password -->
     <div v-if="step === 1">
-      <s-input v-model="email" label="Email:" type="email" placeholder="" />
+      <s-input
+        v-model="email"
+        :required="true"
+        label="Email:"
+        type="email"
+        placeholder=""
+      />
       <s-input
         v-model="password"
+        :required="true"
         type="password"
         label="Password:"
         placeholder=""
       />
       <s-input
         v-model="confirmPassword"
+        :required="true"
         type="password"
         label="Confirm Password:"
         placeholder=""
@@ -27,8 +35,18 @@
     <!-- Step 2: Personal Details -->
     <div v-if="step === 2">
       <div class="register__name">
-        <s-input v-model="firstName" label="First Name:" placeholder="" />
-        <s-input v-model="lastName" label="Last Name:" placeholder="" />
+        <s-input
+          v-model="firstName"
+          :required="true"
+          label="First Name:"
+          placeholder=""
+        />
+        <s-input
+          v-model="lastName"
+          :required="true"
+          label="Last Name:"
+          placeholder=""
+        />
       </div>
       <s-input
         v-model="selectedGender"
@@ -40,14 +58,17 @@
       <div class="register__ageAndLocation">
         <s-input
           v-model="dateOfBirth"
+          :required="true"
           type="date"
           label="DOB:"
           placeholder=""
         />
-
-        <!-- <Calendar />
-        <DatePicker v-model="dateOfBirth" /> -->
-        <s-input v-model="location" label="City:" placeholder="" />
+        <s-input
+          v-model="location"
+          :required="true"
+          label="City:"
+          placeholder=""
+        />
       </div>
       <s-button text="Continue" variant="secondary" @click="nextStep" />
     </div>
@@ -65,15 +86,10 @@ import { useAuthStore } from "../stores/authStore";
 import sInput from "./Input.vue";
 import sButton from "./Button.vue";
 
-import { Calendar, DatePicker } from "v-calendar";
-import "v-calendar/style.css";
-
 export default {
   components: {
     sInput,
     sButton,
-    Calendar,
-    DatePicker,
   },
   data() {
     return {
@@ -188,6 +204,14 @@ export default {
   &__ageAndLocation {
     display: flex;
     gap: 8px;
+  }
+
+  &__ageAndLocation {
+    width: 100%;
+
+    & > * {
+      width: auto;
+    }
   }
 }
 .s-input {

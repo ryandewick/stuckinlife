@@ -9,6 +9,7 @@
       :id="label + 'Id'"
       class="s-input__input"
       :placeholder="placeholder"
+      :required="required"
       @input="handleInput"
       :type="type"
       :value="modelValue"
@@ -54,6 +55,10 @@ export default {
     label: {
       type: String,
       default: "",
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
     options: {
       type: Array,
