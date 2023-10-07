@@ -193,8 +193,8 @@ export default {
 
 input[type="date"] {
   display: block;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   min-height: 1.2em;
 }
 </style>
