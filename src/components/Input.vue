@@ -131,6 +131,6 @@ input[type="date"] {
   display: block;
   -webkit-appearance: none;
   -moz-appearance: none;
-  min-height: 1.2em;
+  min-width: 50%;
 }
 </style>
