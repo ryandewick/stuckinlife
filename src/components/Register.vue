@@ -17,25 +17,41 @@
         placeholder=""
       />
       <p v-if="authError" class="error">{{ authError }}</p>
-      <s-button text="Continue" @click="signUp" variant="secondary" />
+      <s-button
+        text="Continue"
+        @click="checkForValidEmail"
+        variant="secondary"
+      />
     </div>
 
     <!-- Step 2: Personal Details -->
     <div v-if="step === 2">
-      <s-input v-model="firstName" label="First Name:" placeholder="" />
-      <s-input v-model="lastName" label="Last Name:" placeholder="" />
-      <s-input v-model="dateOfBirth" type="date" label="DOB:" placeholder="" />
-      <s-input v-model="location" label="City:" placeholder="" />
-      <s-button
-        text="Continue"
-        variant="secondary"
-        @click="updateUserProfile"
+      <div class="register__name">
+        <s-input v-model="firstName" label="First Name:" placeholder="" />
+        <s-input v-model="lastName" label="Last Name:" placeholder="" />
+      </div>
+      <s-input
+        v-model="selectedGender"
+        label="Gender:"
+        type="select"
+        placeholder="Choose a gender"
+        :options="genderOptions"
       />
-      <!-- <input v-model="firstName" placeholder="First Name" />
-      <input v-model="lastName" placeholder="Last Name" />
-      <input type="date" v-model="dateOfBirth" /> -->
-      <!-- ... other fields ... -->
-      <!-- <button @click="updateUserProfile">Save Details</button> -->
+      <div class="register__ageAndLocation">
+        <s-input
+          v-model="dateOfBirth"
+          type="date"
+          label="DOB:"
+          placeholder=""
+        />
+        <s-input v-model="location" label="City:" placeholder="" />
+      </div>
+      <s-button text="Continue" variant="secondary" @click="nextStep" />
+    </div>
+
+    <div v-if="step === 3">
+      <span>step 3</span>
+      <s-button text="Sign up" variant="secondary" @click="signUp" />
     </div>
   </div>
 </template>
@@ -59,6 +75,12 @@ export default {
       confirmPassword: "",
       firstName: "",
       lastName: "",
+      genderOptions: [
+        { label: "Male", value: "male" },
+        { label: "Female", value: "female" },
+        { label: "Other", value: "other" },
+      ],
+      selectedGender: "",
       dateOfBirth: null,
       location: "",
       // ... other data properties for additional steps ...
@@ -73,6 +95,30 @@ export default {
     },
   },
   methods: {
+    nextStep() {
+      this.step++;
+      console.log(this.step);
+    },
+
+    async checkForValidEmail() {
+      console.log("Method called");
+      if (this.password !== this.confirmPassword) {
+        useAuthStore().authError = "Passwords do not match.";
+        return;
+      }
+
+      try {
+        const emailExists = await useAuthStore().checkEmailExists(this.email);
+        if (emailExists) {
+          useAuthStore().authError = "This email is already in use.";
+          return;
+        }
+        this.step++;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     async signUp() {
       if (this.password !== this.confirmPassword) {
         useAuthStore().authError = "Passwords do not match.";
@@ -80,24 +126,21 @@ export default {
       }
 
       try {
+        // Sign up the user with email and password
         await useAuthStore().signUp(this.email, this.password, {});
-        this.step++;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async updateUserProfile() {
-      try {
-        await useAuthStore().updateUserProfile(useAuthStore().user.uid, {
+
+        // Update the user's profile using the email as the document ID
+        await useAuthStore().updateUserProfile(this.email, {
           firstName: this.firstName,
           lastName: this.lastName,
+          gender: this.selectedGender,
           dateOfBirth: this.dateOfBirth,
           location: this.location,
           // ... other data properties ...
         });
+
         useAuthStore().sidebarOpen = false;
         window.location.reload();
-        // this.step++;
       } catch (error) {
         useAuthStore().sidebarOpen = true;
         console.error(error);
@@ -119,6 +162,12 @@ export default {
     color: $light-color;
     font-weight: 400;
     margin-bottom: 24px;
+  }
+
+  &__name,
+  &__ageAndLocation {
+    display: flex;
+    gap: 8px;
   }
 }
 .s-input {

@@ -5,7 +5,6 @@
       's-button--primary': variant === 'primary',
       's-button--secondary': variant === 'secondary',
     }"
-    @click="handleClick"
   >
     {{ text }}
   </button>

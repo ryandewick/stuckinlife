@@ -21,8 +21,14 @@ export const useAuthStore = defineStore({
   },
 
   actions: {
+    async checkEmailExists(email) {
+      const userDocRef = doc(db, "users", email.toLowerCase());
+      const userDoc = await getDoc(userDocRef);
+      return userDoc.exists();
+    },
     async signUp(email, password, additionalData) {
       try {
+        // Create a new user in Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           email,
@@ -30,8 +36,8 @@ export const useAuthStore = defineStore({
         );
         this.user = userCredential.user;
 
-        // Store additional data in Firestore
-        const userDocRef = doc(db, "users", this.user.uid);
+        // Store user details in Firestore under the "users" collection using email as the document ID
+        const userDocRef = doc(db, "users", email.toLowerCase());
         await setDoc(userDocRef, additionalData);
 
         this.authError = null;
@@ -82,7 +88,7 @@ export const useAuthStore = defineStore({
 
     async fetchUserProfile() {
       if (this.user) {
-        const userDocRef = doc(db, "users", this.user.uid);
+        const userDocRef = doc(db, "users", this.user.email.toLowerCase());
         const userDoc = await getDoc(userDocRef);
         if (userDoc.exists()) {
           this.userProfile = userDoc.data();
@@ -90,16 +96,15 @@ export const useAuthStore = defineStore({
       }
     },
 
-    async updateUserProfile(uid, additionalData) {
+    async updateUserProfile(email, additionalData) {
       try {
-        const userDocRef = doc(db, "users", uid);
+        const userDocRef = doc(db, "users", email.toLowerCase());
         await setDoc(userDocRef, additionalData, { merge: true });
       } catch (error) {
         console.error("Error updating user profile:", error);
         throw error;
       }
     },
-
     resetAuthError() {
       this.authError = null;
     },
