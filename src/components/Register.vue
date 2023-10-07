@@ -210,7 +210,7 @@ export default {
     width: 100%;
 
     & > * {
-      width: auto;
+      width: 50%;
     }
   }
 }
