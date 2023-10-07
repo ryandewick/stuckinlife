@@ -44,6 +44,7 @@
           label="DOB:"
           placeholder=""
         />
+
         <!-- <Calendar />
         <DatePicker v-model="dateOfBirth" /> -->
         <s-input v-model="location" label="City:" placeholder="" />
@@ -107,6 +108,14 @@ export default {
       console.log(this.step);
     },
 
+    getCurrentDate() {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+      const day = String(today.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    },
+
     async checkForValidEmail() {
       console.log("Method called");
       if (this.password !== this.confirmPassword) {
@@ -153,6 +162,10 @@ export default {
         console.error(error);
       }
     },
+  },
+
+  mounted() {
+    this.dateOfBirth = this.getCurrentDate();
   },
 };
 </script>
