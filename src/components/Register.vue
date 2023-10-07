@@ -190,11 +190,4 @@ export default {
 :deep(.s-input__label) {
   color: $light-color;
 }
-
-input[type="date"] {
-  display: block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  min-height: 1.2em;
-}
 </style>
