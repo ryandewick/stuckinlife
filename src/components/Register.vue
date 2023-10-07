@@ -38,14 +38,14 @@
         :options="genderOptions"
       />
       <div class="register__ageAndLocation">
-        <!-- <s-input
+        <s-input
           v-model="dateOfBirth"
           type="date"
           label="DOB:"
           placeholder=""
-        /> -->
-        <Calendar />
-        <DatePicker v-model="dateOfBirth" />
+        />
+        <!-- <Calendar />
+        <DatePicker v-model="dateOfBirth" /> -->
         <s-input v-model="location" label="City:" placeholder="" />
       </div>
       <s-button text="Continue" variant="secondary" @click="nextStep" />
@@ -61,11 +61,11 @@
 <script>
 import { useAuthStore } from "../stores/authStore";
 
-import { Calendar, DatePicker } from "v-calendar";
-import "v-calendar/style.css";
-
 import sInput from "./Input.vue";
 import sButton from "./Button.vue";
+
+import { Calendar, DatePicker } from "v-calendar";
+import "v-calendar/style.css";
 
 export default {
   components: {
@@ -189,5 +189,12 @@ export default {
 
 :deep(.s-input__label) {
   color: $light-color;
+}
+
+input[type="date"] {
+  display: block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
 }
 </style>
