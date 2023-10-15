@@ -29,10 +29,11 @@
           <h2>First watch this video to show you how to get setup</h2>
         </div>
         <div class="index__video-wrapper">
-          <video class="index__video" controls>
+          <!-- <video class="index__video" controls>
             <source src="" type="video/mp4" />
             Your browser does not support the video tag.
-          </video>
+          </video> -->
+          <span>video here</span>
         </div>
         <s-button text="Get Started" @click="toggleSidebar"></s-button>
       </div>
@@ -104,7 +105,7 @@ export default {
     }
   }
 
-  &__video {
+  &__video-wrapper {
     width: 100%;
     margin-top: 32px;
     margin-bottom: 32px;
