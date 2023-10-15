@@ -30,7 +30,7 @@
         </div>
         <div class="index__video-wrapper">
           <video class="index__video" controls>
-            <source src="path/to/video.mp4" type="video/mp4" />
+            <source src="" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
