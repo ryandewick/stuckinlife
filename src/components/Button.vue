@@ -23,11 +23,6 @@ export default {
       default: "primary",
     },
   },
-  methods: {
-    handleClick() {
-      this.$emit("click");
-    },
-  },
 };
 </script>
 

@@ -23,7 +23,7 @@
     >
       {{ selectedOption?.label || placeholder }}
     </div>
-    <div v-if="isOpen" class="s-input__dropdown">
+    <div v-if="isOpen && !isMultiSelect" class="s-input__dropdown">
       <div
         v-for="option in options"
         :key="option.value"
@@ -31,6 +31,21 @@
         class="s-input__option"
       >
         {{ option.label }}
+      </div>
+    </div>
+    <div v-if="isOpen && isMultiSelect" class="s-input__dropdown">
+      <div
+        v-for="option in options"
+        :key="option.value"
+        @click="toggleSelection(option)"
+        class="s-input__option"
+      >
+        <span class="s-input__option__checkbox-label">{{ option.label }}</span>
+        <input
+          class="s-input__option__checkbox"
+          type="checkbox"
+          :checked="isSelected(option)"
+        />
       </div>
     </div>
   </div>
@@ -46,7 +61,7 @@ export default {
     },
     modelValue: {
       type: String,
-      default: "",
+      default: null,
     },
     type: {
       type: String,
@@ -64,6 +79,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    isMultiSelect: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -80,6 +99,20 @@ export default {
       this.isOpen = false;
       this.$emit("update:modelValue", option.value);
     },
+    isSelected(option) {
+      return Array.isArray(this.modelValue)
+        ? this.modelValue.includes(option.value)
+        : false;
+    },
+    toggleSelection(option) {
+      const selected = this.modelValue || [];
+      if (this.isSelected(option)) {
+        selected.splice(selected.indexOf(option.value), 1);
+      } else {
+        selected.push(option.value);
+      }
+      this.$emit("update:modelValue", selected);
+    },
   },
 };
 </script>
@@ -93,7 +126,6 @@ export default {
     font-size: 16px;
   }
 
-  input,
   &__input {
     background: #fff;
     padding: 10px 14px;
@@ -115,16 +147,20 @@ export default {
 
 .s-input__dropdown {
   position: relative;
-  // top: 100%;
-  // left: 0;
   font-size: 16px;
   width: 100%;
+  max-height: 160px;
   border: 1px solid #ededed;
   background-color: #fff;
   z-index: 10;
+  overflow-y: auto;
 }
 
 .s-input__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
   padding: 10px 14px;
   cursor: pointer;
   &:hover {

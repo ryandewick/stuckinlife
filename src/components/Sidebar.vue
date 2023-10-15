@@ -1,26 +1,28 @@
 <template>
-  <div class="sidebar">
-    <ul class="sidebar__tabs">
-      <li
-        v-for="tab in tabs"
-        :key="tab"
-        class="sidebar__tab"
-        :class="{ 'sidebar__tab--active': tabOpen === tab.name }"
-        @click="handleTabClick(tab)"
-      >
-        {{ tab.name }}
-      </li>
-    </ul>
-    <div class="container">
-      <sign-in v-if="tabOpen === 'Sign In'" />
-      <register v-if="tabOpen === 'Register'" />
+  <transition name="slide">
+    <div v-if="isSidebarOpen" class="sidebar" tabindex="0">
+      <ul class="sidebar__tabs">
+        <li
+          v-for="tab in tabs"
+          :key="tab"
+          class="sidebar__tab"
+          :class="{ 'sidebar__tab--active': tabOpen === tab.name }"
+          @click="handleTabClick(tab)"
+        >
+          {{ tab.name }}
+        </li>
+      </ul>
+      <div class="container">
+        <sign-in v-if="tabOpen === 'Sign In'" />
+        <register v-if="tabOpen === 'Register'" />
+      </div>
+      <img
+        class="sidebar__stuck-logo"
+        src="@/assets/transparent-logo.svg"
+        alt="stuckinlife logo"
+      />
     </div>
-    <img
-      class="sidebar__stuck-logo"
-      src="@/assets/transparent-logo.svg"
-      alt="stuckinlife logo"
-    />
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -46,7 +48,15 @@ export default {
         },
       ],
       tabOpen: "Sign In",
+      isSidebarOpen: false,
     };
+  },
+
+  props: {
+    isSidebarOpen: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
@@ -62,6 +72,11 @@ export default {
     handleTabClick(tab) {
       this.tabOpen = tab.name;
     },
+
+    // Toggle the sidebar open/close state
+    // toggleSidebar() {
+    //   this.$emit("update:isSidebarOpen", !this.isSidebarOpen);
+    // },
   },
 };
 </script>
@@ -69,6 +84,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
+
 .sidebar {
   position: absolute;
   top: 0;
@@ -116,5 +132,15 @@ export default {
     bottom: 0;
     right: 0;
   }
+}
+
+/* Slide-in animation */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100%); /* Slide in from the right */
 }
 </style>
