@@ -6,7 +6,7 @@
         class="sign-in__email"
         v-model="email"
         type="email"
-        label="Email"
+        label="Email:"
         placeholder="Enter your email"
       />
 
@@ -14,17 +14,12 @@
         class="sign-in__password"
         v-model="password"
         type="password"
-        label="Password"
+        label="Password:"
         placeholder=""
       />
       <span>{{ authError }}</span>
 
-      <s-button
-        class="sign-in__button"
-        text="Login"
-        variant="secondary"
-        @click="signIn"
-      />
+      <s-button class="sign-in__button" text="Login" @click="signIn" />
     </form>
   </div>
 </template>
@@ -77,7 +72,7 @@ export default {
 @import "@/assets/mixins/_breakpoints.scss";
 .sign-in {
   h4 {
-    color: $light-color;
+    color: $dark-color;
     font-weight: 400;
     margin-bottom: 24px;
   }
@@ -90,10 +85,6 @@ export default {
     z-index: 2;
     margin-top: 40px;
   }
-}
-
-:deep(.s-input__label) {
-  color: $light-color;
 }
 
 .s-input {

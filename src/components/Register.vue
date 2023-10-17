@@ -25,11 +25,7 @@
         placeholder=""
       />
       <p v-if="authError" class="error">{{ authError }}</p>
-      <s-button
-        text="Continue"
-        @click="checkForValidEmail"
-        variant="secondary"
-      />
+      <s-button text="Continue" @click="checkForValidEmail" />
     </div>
 
     <!-- Step 2: Personal Details -->
@@ -70,7 +66,7 @@
           placeholder=""
         />
       </div>
-      <s-button text="Continue" variant="secondary" @click="nextStep" />
+      <s-button text="Continue" @click="nextStep" />
     </div>
 
     <div v-if="step === 3">
@@ -84,7 +80,7 @@
         type="select"
         :is-multi-select="true"
       ></s-input>
-      <s-button text="Sign up" variant="secondary" @click="signUp" />
+      <s-button text="Sign up" @click="signUp" />
     </div>
   </div>
 </template>
@@ -241,7 +237,6 @@ export default {
 
 .register {
   h4 {
-    color: $light-color;
     font-weight: 400;
     margin-bottom: 24px;
   }
@@ -268,9 +263,5 @@ export default {
 .s-button {
   z-index: 2;
   margin-top: 40px;
-}
-
-:deep(.s-input__label) {
-  color: $light-color;
 }
 </style>

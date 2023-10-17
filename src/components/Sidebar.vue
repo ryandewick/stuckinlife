@@ -87,7 +87,8 @@ export default {
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  background-color: $primary-color;
+  background-color: $light-color;
+  border-left: 1px solid $primary-color;
 
   @include tabletAndDesktop {
     width: 400px;
@@ -105,16 +106,19 @@ export default {
     padding: 16px;
     font-size: 16px;
     width: 100%;
-    color: $light-color;
+    color: $primary-color;
     text-align: center;
-    border: 1px solid $secondary-color;
+    border-left: 1px solid $primary-color;
+    border-right: 1px solid $primary-color;
 
     &--active {
-      background-color: $secondary-color;
+      color: $light-color;
+      background-color: $primary-color;
     }
 
     &:hover {
-      background-color: $secondary-color;
+      color: $light-color;
+      background-color: $primary-color;
     }
   }
 
@@ -126,6 +130,7 @@ export default {
     position: absolute;
     bottom: 0;
     right: 0;
+    filter: brightness(-100%);
   }
 }
 
