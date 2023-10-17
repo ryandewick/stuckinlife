@@ -110,6 +110,7 @@ export default {
 
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
+      window.scrollTo(0, 0);
     },
 
     updateIsMobile() {
@@ -195,8 +196,6 @@ export default {
       display: flex;
       align-items: center;
       gap: 24px;
-      // justify-content: space-evenly;
-      width: auto;
       color: $light-color;
 
       @include tabletAndDesktop {
