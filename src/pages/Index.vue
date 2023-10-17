@@ -168,20 +168,16 @@ export default {
     }
 
     &-title {
-      // font-size: 3.4rem;
       margin-top: 8px;
       margin-bottom: 8px;
-
-      @include tabletAndDesktop {
-        // font-size: 4rem;
-      }
     }
 
     &-sub {
       width: auto;
       font-style: italic;
       font-size: 1.6rem;
-      color: rgba(0, 0, 0, 0.25);
+      // color: rgba(0, 0, 0, 0.25);
+      color: $light-color;
       margin-bottom: 32px;
 
       @include tabletAndDesktop {
@@ -213,13 +209,13 @@ export default {
     margin-top: 32px;
     margin-bottom: 32px;
 
-    @include tablet {
-      width: 500px;
-    }
+    // @include tablet {
+    //   width: 500px;
+    // }
 
-    @include desktop {
-      width: 700px;
-    }
+    // @include desktop {
+    //   width: 700px;
+    // }
   }
 }
 </style>

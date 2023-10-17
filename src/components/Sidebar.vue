@@ -84,7 +84,7 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100dvh;
+  bottom: 0;
   width: 100%;
   overflow: hidden;
   background-color: $primary-color;
