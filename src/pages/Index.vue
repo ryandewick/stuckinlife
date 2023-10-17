@@ -141,9 +141,10 @@ export default {
 
   &__hero {
     display: flex;
+    align-items: center;
     flex-direction: column;
 
-    @include tabletAndDesktop {
+    @include desktop {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
@@ -153,6 +154,7 @@ export default {
   &__header {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: $light-color;
 
     &-image {
@@ -162,7 +164,7 @@ export default {
       margin-bottom: 32px;
 
       @include tabletAndDesktop {
-        width: 180px;
+        width: 100px;
         margin-bottom: 0px;
       }
     }
@@ -191,7 +193,8 @@ export default {
       margin-top: 24px;
       display: flex;
       align-items: center;
-      gap: 24px;
+      justify-content: center;
+      gap: 16px;
       color: $light-color;
 
       @include tabletAndDesktop {
@@ -201,13 +204,16 @@ export default {
     }
   }
 
-  &__video-wrapper img {
+  &__video-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
     margin-top: 32px;
     margin-bottom: 32px;
+
+    img {
+      width: 100%;
+    }
 
     // @include tablet {
     //   width: 500px;
