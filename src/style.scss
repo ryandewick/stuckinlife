@@ -9,6 +9,7 @@
 
 html {
   font-size: $base-font-size;
+  width: 100%;
 }
 
 body {
@@ -17,12 +18,9 @@ body {
 
 .container {
   max-width: 1200px;
-  padding: 24px;
+  width: 100%;
+  padding: 16px;
   margin: 0 auto;
-
-  // @include tabletAndDesktop {
-  //   padding: 24px 64px;
-  // }
 }
 
 h1, h2, h3, h4, h5, h6 {

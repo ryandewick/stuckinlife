@@ -143,11 +143,10 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-evenly;
 
     @include desktop {
       flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
     }
   }
 
@@ -156,6 +155,10 @@ export default {
     align-items: center;
     justify-content: center;
     color: $light-color;
+
+    @include desktop {
+      justify-content: revert;
+    }
 
     &-image {
       width: 80px;
@@ -192,14 +195,13 @@ export default {
     &-cta-wrapper {
       margin-top: 24px;
       display: flex;
-      align-items: center;
-      justify-content: center;
+
       gap: 16px;
       color: $light-color;
 
       @include tabletAndDesktop {
         margin-top: 40px;
-        width: 620px;
+        width: 720px;
       }
     }
   }
