@@ -7,16 +7,6 @@
       class="index__sidebar"
     />
     <div class="container">
-      <!-- <button v-if="!sidebarOpen && !user" @click="openSidebar">
-        Open Sidebar
-      </button>
-
-      <h3 v-if="userProfile?.firstName">
-        Hello {{ userProfile?.firstName }} {{ userProfile?.lastName }}
-      </h3>
-      <p v-if="userProfile?.location">Location: {{ userProfile?.location }}</p>
-
-      <button v-if="user" @click="handleSignOut">Sign out</button> -->
       <div class="index__hero">
         <div>
           <div class="index__header">
@@ -73,6 +63,12 @@
       </div>
     </div>
   </div>
+  <h3 v-if="userProfile?.firstName">
+    Hello {{ userProfile?.firstName }} {{ userProfile?.lastName }}
+  </h3>
+  <p v-if="userProfile?.location">Location: {{ userProfile?.location }}</p>
+
+  <button v-if="user" @click="handleSignOut">Sign out</button>
 </template>
 
 <script>
@@ -195,13 +191,17 @@ export default {
     &-cta-wrapper {
       margin-top: 24px;
       display: flex;
-
-      gap: 16px;
+      justify-content: center;
+      gap: 24px;
       color: $light-color;
 
       @include tabletAndDesktop {
         margin-top: 40px;
         width: 720px;
+      }
+
+      @include desktop {
+        justify-content: revert;
       }
     }
   }
