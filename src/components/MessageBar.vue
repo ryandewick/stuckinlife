@@ -8,13 +8,16 @@
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .message-bar {
+  border-top: $bg-color 2px solid;
+  border-bottom: $bg-color 2px solid;
   text-align: center;
-  padding: 2px 0;
-  background-color: $dark-color;
+  padding: 6px 0;
+  background-color: $light-color;
 
   &__message {
     font-size: 16px;
-    color: $light-color;
+    color: $primary-color;
+    font-weight: 700;
   }
 }
 </style>

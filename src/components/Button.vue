@@ -38,6 +38,11 @@ export default {
   border: none;
   cursor: pointer;
 
+  @include tabletAndDesktop {
+    max-height: 40px;
+    max-width: 230px;
+  }
+
   &--primary {
     background-color: $primary-color; // Primary background color
     color: $light-color; // Primary text color

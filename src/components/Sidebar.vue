@@ -72,11 +72,6 @@ export default {
     handleTabClick(tab) {
       this.tabOpen = tab.name;
     },
-
-    // Toggle the sidebar open/close state
-    // toggleSidebar() {
-    //   this.$emit("update:isSidebarOpen", !this.isSidebarOpen);
-    // },
   },
 };
 </script>

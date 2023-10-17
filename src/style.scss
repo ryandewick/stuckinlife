@@ -18,6 +18,11 @@ body {
 .container {
   max-width: 1200px;
   padding: 24px;
+  margin: 0 auto;
+
+  // @include tabletAndDesktop {
+  //   padding: 24px 64px;
+  // }
 }
 
 h1, h2, h3, h4, h5, h6 {
