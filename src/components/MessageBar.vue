@@ -1,14 +1,12 @@
 <template>
   <div class="message-bar">
-    <div class="container">
-      <p
-        class="message-bar__message"
-        :class="{ 'scrolling-message': isMessageTooLong }"
-        ref="message"
-      >
-        {{ quote }}
-      </p>
-    </div>
+    <p
+      class="message-bar__message"
+      :class="{ 'scrolling-message': isMessageTooLong }"
+      ref="message"
+    >
+      {{ quote }}
+    </p>
   </div>
 </template>
 
@@ -32,7 +30,7 @@ export default {
 
   methods: {
     async getQuote() {
-      const url = `https://api.api-ninjas.com/v1/quotes?category=learning`;
+      const url = `https://api.api-ninjas.com/v1/quotes?category=success`;
       const headers = {
         "X-Api-Key": import.meta.env.VITE_QUOTE_API_KEY,
       };
@@ -69,6 +67,7 @@ export default {
   border-top: $bg-color 2px solid;
   border-bottom: $bg-color 2px solid;
   text-align: center;
+  padding: 6px 0;
   background-color: $light-color;
   overflow: hidden;
 
@@ -90,10 +89,10 @@ export default {
 
   @keyframes marquee {
     0% {
-      transform: translateX(100%);
+      transform: translateX(100%); /* Start from the right edge */
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-100%); /* Scroll to the left edge */
     }
   }
 }
