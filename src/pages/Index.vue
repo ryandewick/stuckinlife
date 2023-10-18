@@ -151,8 +151,10 @@ export default {
     align-items: center;
     justify-content: center;
     color: $light-color;
+    margin-top: 32px;
 
     @include desktop {
+      margin-top: 0;
       justify-content: revert;
     }
 
