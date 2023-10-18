@@ -89,10 +89,10 @@ export default {
 
   @keyframes marquee {
     0% {
-      transform: translateX(100%); /* Start from the right edge */
+      transform: translateX(100%);
     }
     100% {
-      transform: translateX(-100%); /* Scroll to the left edge */
+      transform: translateX(-100%);
     }
   }
 }

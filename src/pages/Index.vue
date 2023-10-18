@@ -18,7 +18,7 @@
             <div>
               <h1 class="index__header-title">StuckInLife</h1>
               <h2 class="index__header-sub">
-                Celebrating Small Wins on Your Journey to Success!
+                Unlock your career potential: Let's find your perfect match!
               </h2>
             </div>
           </div>
