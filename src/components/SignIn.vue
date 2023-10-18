@@ -55,7 +55,7 @@ export default {
       try {
         await useAuthStore().signIn(this.email, this.password);
         // Optionally, redirect to a different page after successful sign-in
-        // this.$router.push('/dashboard');
+        this.$router.push("/courses");
         useAuthStore().sidebarOpen = false;
         window.location.reload();
       } catch (error) {

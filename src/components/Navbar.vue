@@ -8,7 +8,10 @@
             src="../assets/stuckinlife.webp"
             alt=""
           />
-          <a class="navbar__brand-name" href="/">Stuckinlife </a>
+          <a v-if="!user" class="navbar__brand-name" href="/">Stuckinlife</a>
+          <a v-if="user" class="navbar__brand-name" href="/courses"
+            >Stuckinlife</a
+          >
         </div>
         <div class="navbar__links">
           <router-link
@@ -20,7 +23,18 @@
           >
         </div>
         <div class="navbar__button-wrapper">
-          <s-button text="Register / Login" variant="secondary" />
+          <s-button
+            v-if="!user"
+            text="Register / Login"
+            variant="secondary"
+            @click="toggleSidebar"
+          />
+          <s-button
+            v-else
+            :text="greetingsMessage"
+            variant="secondary"
+            @click="goToProfile"
+          />
         </div>
       </div>
     </div>
@@ -28,6 +42,8 @@
 </template>
 
 <script>
+import { useAuthStore } from "@/stores/authStore";
+
 import sButton from "./Button.vue";
 
 export default {
@@ -36,7 +52,6 @@ export default {
   },
   data() {
     return {
-      isMenuActive: false,
       navLinks: [
         {
           name: "About us",
@@ -48,6 +63,30 @@ export default {
         },
       ],
     };
+  },
+
+  computed: {
+    user() {
+      return useAuthStore()?.user;
+    },
+
+    userProfile() {
+      return useAuthStore()?.userProfile;
+    },
+
+    greetingsMessage() {
+      return `Hello ${this.userProfile?.firstName}!`;
+    },
+  },
+
+  methods: {
+    toggleSidebar() {
+      useAuthStore().toggleSidebar();
+    },
+
+    goToProfile() {
+      this.$router.push("/profile");
+    },
   },
 };
 </script>

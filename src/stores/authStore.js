@@ -128,5 +128,8 @@ export const useAuthStore = defineStore({
       }
       console.error("Error in authStore:", this.authError);
     },
+    toggleSidebar() {
+      this.sidebarOpen = !this.sidebarOpen;
+    },
   },
 });

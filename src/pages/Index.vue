@@ -85,7 +85,7 @@ export default {
 
   data() {
     return {
-      sidebarOpen: false,
+      // sidebarOpen: false,
       isMobile: window.innerWidth < 768,
     };
   },
@@ -97,6 +97,9 @@ export default {
     userProfile() {
       return useAuthStore()?.userProfile;
     },
+    sidebarOpen() {
+      return useAuthStore()?.sidebarOpen;
+    },
   },
 
   methods: {
@@ -105,8 +108,7 @@ export default {
     },
 
     toggleSidebar() {
-      this.sidebarOpen = !this.sidebarOpen;
-      window.scrollTo(0, 0);
+      useAuthStore().toggleSidebar();
     },
 
     updateIsMobile() {
