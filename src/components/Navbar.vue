@@ -2,43 +2,52 @@
   <nav>
     <div class="container">
       <div class="navbar">
-        <div class="navbar-brand">
+        <div class="navbar__brand">
+          <img
+            class="navbar__brand-logo"
+            src="../assets/stuckinlife.webp"
+            alt=""
+          />
           <a class="navbar__brand-name" href="/">Stuckinlife </a>
-          <a
-            role="button"
-            class="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
-            @click="toggleMenu"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
         </div>
-        <!-- <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
-          <div class="navbar-end">
-            <a class="navbar-item" href="/"> Home </a>
-            <a class="navbar-item" href="/about"> About </a>
-            <a class="navbar-item" href="/contact"> Contact </a>
-          </div>
-        </div> -->
+        <div class="navbar__links">
+          <router-link
+            class="navbar__link"
+            :to="item.url"
+            v-for="item in navLinks"
+            :key="item.name"
+            >{{ item.name }}</router-link
+          >
+        </div>
+        <div class="navbar__button-wrapper">
+          <s-button text="Register / Login" variant="secondary" />
+        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import sButton from "./Button.vue";
+
 export default {
+  components: {
+    sButton,
+  },
   data() {
     return {
       isMenuActive: false,
+      navLinks: [
+        {
+          name: "About us",
+          url: "/about-us",
+        },
+        {
+          name: "Blog",
+          url: "/blog",
+        },
+      ],
     };
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuActive = !this.isMenuActive;
-    },
   },
 };
 </script>
@@ -56,10 +65,40 @@ nav {
   align-items: center;
   justify-content: space-between;
 
-  &__brand-name {
-    font-size: 20px;
-    font-weight: 700;
+  &__brand {
+    display: flex;
+    align-items: center;
+
+    &-logo {
+      width: 50px;
+      filter: brightness(1000%);
+      margin-right: 12px;
+    }
+
+    &-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: $light-color;
+    }
+  }
+
+  &__link {
     color: $light-color;
+    margin-right: 24px;
+    font-size: 1.6rem;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  &__button-wrapper {
+    display: none;
+
+    @include tabletAndDesktop {
+      display: block;
+    }
   }
 }
 </style>

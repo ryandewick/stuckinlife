@@ -1,8 +1,45 @@
 <template>
   <div class="message-bar">
-    <span class="message-bar__message">Message of the day</span>
+    <p class="message-bar__message">{{ quote }}</p>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      quote: "",
+      quotes: [],
+    };
+  },
+
+  methods: {
+    async getQuote() {
+      const url = "https://type.fit/api/quotes";
+
+      try {
+        const response = await axios.get(url);
+        this.quotes = response.data;
+
+        if (this.quotes.length > 0) {
+          const randomIndex = Math.floor(Math.random() * this.quotes.length);
+          this.quote = this.quotes[randomIndex].text;
+        } else {
+          this.quote = "No quotes available"; // Handle the case where there are no quotes
+        }
+      } catch (error) {
+        console.error("Error fetching a quote:", error);
+      }
+    },
+  },
+
+  mounted() {
+    this.getQuote();
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
