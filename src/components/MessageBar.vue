@@ -32,7 +32,7 @@ export default {
       // } catch (error) {
       //   console.error("Error fetching a quote:", error);
       // }
-      const url = `https://api.api-ninjas.com/v1/quotes?category=happiness`;
+      const url = `https://api.api-ninjas.com/v1/quotes?category=learning`;
       const headers = {
         "X-Api-Key": import.meta.env.VITE_QUOTE_API_KEY,
       };
