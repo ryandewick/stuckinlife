@@ -192,7 +192,6 @@ export default {
     }
 
     &-cta-wrapper {
-      margin-top: 24px;
       display: flex;
       justify-content: center;
       gap: 24px;
