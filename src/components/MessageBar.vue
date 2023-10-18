@@ -17,21 +17,33 @@ export default {
 
   methods: {
     async getQuote() {
-      const url = "https://type.fit/api/quotes";
+      // const url = "https://type.fit/api/quotes";
 
-      try {
-        const response = await axios.get(url);
-        this.quotes = response.data;
+      // try {
+      //   const response = await axios.get(url);
+      //   this.quotes = response.data;
 
-        if (this.quotes.length > 0) {
-          const randomIndex = Math.floor(Math.random() * this.quotes.length);
-          this.quote = this.quotes[randomIndex].text;
-        } else {
-          this.quote = "No quotes available"; // Handle the case where there are no quotes
-        }
-      } catch (error) {
-        console.error("Error fetching a quote:", error);
-      }
+      //   if (this.quotes.length > 0) {
+      //     const randomIndex = Math.floor(Math.random() * this.quotes.length);
+      //     this.quote = this.quotes[randomIndex].text;
+      //   } else {
+      //     this.quote = "No quotes available"; // Handle the case where there are no quotes
+      //   }
+      // } catch (error) {
+      //   console.error("Error fetching a quote:", error);
+      // }
+      const url = `https://api.api-ninjas.com/v1/quotes?category=happiness`;
+      const headers = {
+        "X-Api-Key": import.meta.env.VITE_QUOTE_API_KEY,
+      };
+      axios
+        .get(url, { headers })
+        .then((response) => {
+          this.quote = response.data[0].quote;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
 
