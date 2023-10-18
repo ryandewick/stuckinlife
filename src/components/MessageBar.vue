@@ -47,9 +47,8 @@ export default {
         });
     },
     checkMessageLength() {
-      // Check if the message is longer than the container width
       const container = document.querySelector(".container");
-      const message = this.$refs.message; // Use the ref to access the message element
+      const message = this.$refs.message;
 
       if (container && message) {
         this.isMessageTooLong = message.clientWidth < message.scrollWidth;
@@ -77,7 +76,11 @@ export default {
     color: $primary-color;
     font-weight: 700;
     white-space: nowrap;
-    animation: marquee 30s linear infinite;
+    animation: marquee 10s linear infinite;
+
+    @include tabletAndDesktop {
+      animation: marquee 30s linear infinite;
+    }
   }
 
   .scrolling-message {
