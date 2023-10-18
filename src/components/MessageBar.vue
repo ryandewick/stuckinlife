@@ -70,6 +70,7 @@ export default {
   border-bottom: $bg-color 2px solid;
   text-align: center;
   background-color: $light-color;
+  overflow: hidden;
 
   &__message {
     font-size: 16px;
