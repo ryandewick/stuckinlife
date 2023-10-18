@@ -1,6 +1,8 @@
 <template>
   <div class="message-bar">
-    <p class="message-bar__message">{{ quote }}</p>
+    <div class="container">
+      <p class="message-bar__message">{{ quote }}</p>
+    </div>
   </div>
 </template>
 
