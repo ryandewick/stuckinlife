@@ -182,9 +182,12 @@ export default {
       margin-bottom: 32px;
 
       @include tabletAndDesktop {
-        width: 380px;
         font-size: 2rem;
         margin-bottom: 0;
+      }
+
+      @include desktop {
+        width: 380px;
       }
     }
 
