@@ -30,14 +30,14 @@ export default {
 
   methods: {
     async getQuote() {
-      const url = `https://api.api-ninjas.com/v1/quotes?category=success`;
+      const url = `https://api.api-ninjas.com/v1/dadjokes?limit=1`;
       const headers = {
         "X-Api-Key": import.meta.env.VITE_QUOTE_API_KEY,
       };
       axios
         .get(url, { headers })
         .then((response) => {
-          this.quote = response.data[0].quote;
+          this.quote = response.data[0].joke;
           this.checkMessageLength();
         })
         .catch((error) => {
