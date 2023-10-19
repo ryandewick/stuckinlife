@@ -106,19 +106,18 @@ export default {
     padding: 16px;
     font-size: 16px;
     width: 100%;
-    color: $primary-color;
+    background-color: $primary-color;
+    color: $light-color;
     text-align: center;
-    border-left: 1px solid $primary-color;
-    border-right: 1px solid $primary-color;
 
     &--active {
-      color: $light-color;
-      background-color: $primary-color;
+      color: $primary-color;
+      background-color: $light-color;
     }
 
     &:hover {
-      color: $light-color;
-      background-color: $primary-color;
+      color: $primary-color;
+      background-color: $light-color;
     }
   }
 

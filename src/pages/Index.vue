@@ -85,7 +85,6 @@ export default {
 
   data() {
     return {
-      // sidebarOpen: false,
       isMobile: window.innerWidth < 768,
     };
   },
