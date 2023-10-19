@@ -1,10 +1,9 @@
 <template>
-  <div class="message-bar">
-    <p
-      class="message-bar__message"
-      :class="{ 'scrolling-message': isMessageTooLong }"
-      ref="message"
-    >
+  <div
+    class="message-bar"
+    :style="{ '--animation-duration': animationDuration }"
+  >
+    <p class="message-bar__message" ref="message">
       {{ quote }}
     </p>
   </div>
@@ -18,14 +17,8 @@ export default {
     return {
       quote: "",
       quotes: [],
-      isMessageTooLong: false,
+      isMobile: false,
     };
-  },
-
-  computed: {
-    shouldScrollMessage() {
-      return this.isMessageTooLong ? "scrolling-message" : "";
-    },
   },
 
   methods: {
@@ -38,24 +31,36 @@ export default {
         .get(url, { headers })
         .then((response) => {
           this.quote = response.data[0].joke;
-          this.checkMessageLength();
+          this.checkIsMobile();
         })
         .catch((error) => {
           console.error(error);
         });
     },
-    checkMessageLength() {
-      const container = document.querySelector(".container");
-      const message = this.$refs.message;
+    checkIsMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+  },
 
-      if (container && message) {
-        this.isMessageTooLong = message.clientWidth < message.scrollWidth;
+  computed: {
+    animationDuration() {
+      if (this.quote.length >= 80) {
+        return "15s";
+      } else if (this.quote.length >= 100) {
+        return "20s";
+      } else {
+        return "10s";
       }
     },
   },
 
   mounted() {
     this.getQuote();
+    window.addEventListener("resize", this.checkIsMobile);
+    this.checkIsMobile();
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.checkIsMobile);
   },
 };
 </script>
@@ -63,6 +68,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
+
 .message-bar {
   border-top: $bg-color 2px solid;
   border-bottom: $bg-color 2px solid;
@@ -76,23 +82,17 @@ export default {
     color: $primary-color;
     font-weight: 700;
     white-space: nowrap;
-    animation: marquee 10s linear infinite;
+    animation: marquee linear infinite;
+    animation-duration: var(--animation-duration);
 
-    @include tabletAndDesktop {
-      animation: marquee 30s linear infinite;
-    }
-  }
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
 
-  .scrolling-message {
-    animation-play-state: running;
-  }
-
-  @keyframes marquee {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
+      100% {
+        transform: translateX(-100%);
+      }
     }
   }
 }
