@@ -17,7 +17,6 @@ export default {
     return {
       quote: "",
       quotes: [],
-      isMobile: false,
     };
   },
 
@@ -31,14 +30,10 @@ export default {
         .get(url, { headers })
         .then((response) => {
           this.quote = response.data[0].joke;
-          this.checkIsMobile();
         })
         .catch((error) => {
           console.error(error);
         });
-    },
-    checkIsMobile() {
-      this.isMobile = window.innerWidth <= 768;
     },
   },
 
@@ -56,11 +51,6 @@ export default {
 
   mounted() {
     this.getQuote();
-    window.addEventListener("resize", this.checkIsMobile);
-    this.checkIsMobile();
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.checkIsMobile);
   },
 };
 </script>
