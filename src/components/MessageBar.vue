@@ -39,12 +39,10 @@ export default {
 
   computed: {
     animationDuration() {
-      if (this.quote.length >= 80) {
-        return "15s";
-      } else if (this.quote.length >= 100) {
+      if (this.quote.length >= 100) {
         return "20s";
       } else {
-        return "10s";
+        return "15s";
       }
     },
   },
@@ -68,12 +66,13 @@ export default {
   overflow: hidden;
 
   &__message {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: $primary-color;
     font-weight: 700;
     white-space: nowrap;
     animation: marquee linear infinite;
     animation-duration: var(--animation-duration);
+    transform-origin: 0% 0;
 
     @keyframes marquee {
       0% {

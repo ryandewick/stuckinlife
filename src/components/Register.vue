@@ -70,7 +70,13 @@
     </div>
 
     <div v-if="step === 3">
-      <span>step 3</span>
+      <span
+        class="register__hobbies-tag"
+        v-for="value in multiSelectedValues"
+        :key="value"
+      >
+        {{ value }}</span
+      >
       <s-input
         :model-value="multiSelectedValues"
         placeholder="Hobbies / Interests"
@@ -80,6 +86,7 @@
         type="select"
         :is-multi-select="true"
       ></s-input>
+
       <s-button text="Sign up" @click="signUp" />
     </div>
   </div>
@@ -210,6 +217,7 @@ export default {
           gender: this.selectedGender,
           dateOfBirth: this.dateOfBirth,
           location: this.location,
+          hobbies: this.multiSelectedValues,
           // ... other data properties ...
         });
 
@@ -253,6 +261,16 @@ export default {
     & > * {
       width: 50%;
     }
+  }
+
+  &__hobbies-tag {
+    display: inline-block;
+    background-color: $primary-color;
+    color: $light-color;
+    padding: 4px 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
   }
 }
 .s-input {

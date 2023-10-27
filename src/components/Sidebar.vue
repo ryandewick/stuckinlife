@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div v-if="isSidebarOpen" class="sidebar" tabindex="0">
+    <div v-if="sidebarOpen" class="sidebar">
       <ul class="sidebar__tabs">
         <li
           v-for="tab in tabs"
@@ -29,6 +29,7 @@
 import { useAuthStore } from "@/stores/authStore";
 import SignIn from "@/components/SignIn.vue";
 import Register from "@/components/Register.vue";
+import { mapActions, mapState } from "pinia";
 export default {
   components: {
     SignIn,
@@ -48,30 +49,36 @@ export default {
         },
       ],
       tabOpen: "Sign In",
-      isSidebarOpen: false,
     };
   },
 
-  props: {
-    isSidebarOpen: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
   computed: {
-    user() {
-      return useAuthStore().user;
-    },
-    userProfile() {
-      return useAuthStore().userProfile;
-    },
+    ...mapState(useAuthStore, ["user", "userProfile", "sidebarOpen"]),
   },
 
   methods: {
+    ...mapActions(useAuthStore, {
+      toggleSidebar: "toggleSidebar",
+    }),
+
     handleTabClick(tab) {
       this.tabOpen = tab.name;
     },
+
+    handleOutsideClick(event) {
+      const sidebar = document.querySelector(".sidebar");
+      if (this.sidebarOpen && sidebar && !sidebar.contains(event.target)) {
+        this.toggleSidebar();
+      }
+    },
+  },
+
+  beforeMount() {
+    window.removeEventListener("mousedown", this.handleOutsideClick);
+  },
+
+  mounted() {
+    window.addEventListener("mousedown", this.handleOutsideClick);
   },
 };
 </script>
@@ -79,6 +86,15 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(51, 51, 51, 0.5);
+}
 
 .sidebar {
   position: absolute;
