@@ -44,13 +44,6 @@
           placeholder=""
         />
       </div>
-      <s-input
-        v-model="selectedGender"
-        label="Gender:"
-        type="select"
-        placeholder="Choose a gender"
-        :options="genderOptions"
-      />
       <div class="register__ageAndLocation">
         <s-input
           v-model="dateOfBirth"
@@ -94,6 +87,7 @@
 
 <script>
 import { useAuthStore } from "../stores/authStore";
+import { mapState } from "pinia";
 
 import sInput from "./Input.vue";
 import sButton from "./Button.vue";
@@ -111,12 +105,6 @@ export default {
       confirmPassword: "",
       firstName: "",
       lastName: "",
-      genderOptions: [
-        { label: "Male", value: "male" },
-        { label: "Female", value: "female" },
-        { label: "Other", value: "other" },
-      ],
-      selectedGender: "",
       dateOfBirth: null,
       location: "",
       multiSelectedValues: [],
@@ -133,50 +121,22 @@ export default {
         { value: "option10", label: "Option 10" },
         { value: "option11", label: "Option 11" },
         { value: "option12", label: "Option 12" },
-        { value: "option13", label: "Option 13" },
-        { value: "option14", label: "Option 14" },
-        { value: "option15", label: "Option 15" },
-        { value: "option16", label: "Option 16" },
-        { value: "option17", label: "Option 17" },
-        { value: "option18", label: "Option 18" },
-        { value: "option19", label: "Option 19" },
-        { value: "option20", label: "Option 20" },
-        { value: "option21", label: "Option 21" },
-        { value: "option22", label: "Option 22" },
-        { value: "option23", label: "Option 23" },
-        { value: "option24", label: "Option 24" },
-        { value: "option25", label: "Option 25" },
-        { value: "option26", label: "Option 26" },
-        { value: "option27", label: "Option 27" },
-        { value: "option28", label: "Option 28" },
-        { value: "option29", label: "Option 29" },
-        { value: "option30", label: "Option 30" },
-        { value: "option31", label: "Option 31" },
-        { value: "option32", label: "Option 32" },
-        { value: "option33", label: "Option 33" },
-        { value: "option34", label: "Option 34" },
       ],
       // ... other data properties for additional steps ...
     };
   },
   computed: {
-    authError() {
-      return useAuthStore().authError;
-    },
-    sideBarOpen() {
-      return useAuthStore().sidebarOpen;
-    },
+    ...mapState(useAuthStore, ["authError", "sidebarOpen"]),
   },
   methods: {
     nextStep() {
       this.step++;
-      console.log(this.step);
     },
 
     getCurrentDate() {
       const today = new Date();
       const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+      const month = String(today.getMonth() + 1).padStart(2, "0");
       const day = String(today.getDate()).padStart(2, "0");
       return `${year}-${month}-${day}`;
     },
@@ -184,14 +144,14 @@ export default {
     async checkForValidEmail() {
       console.log("Method called");
       if (this.password !== this.confirmPassword) {
-        useAuthStore().authError = "Passwords do not match.";
+        this.authError = "Passwords do not match.";
         return;
       }
 
       try {
         const emailExists = await useAuthStore().checkEmailExists(this.email);
         if (emailExists) {
-          useAuthStore().authError = "This email is already in use.";
+          this.authError = "This email is already in use.";
           return;
         }
         this.step++;
@@ -202,7 +162,7 @@ export default {
 
     async signUp() {
       if (this.password !== this.confirmPassword) {
-        useAuthStore().authError = "Passwords do not match.";
+        this.authError = "Passwords do not match.";
         return;
       }
 
@@ -214,17 +174,16 @@ export default {
         await useAuthStore().updateUserProfile(this.email, {
           firstName: this.firstName,
           lastName: this.lastName,
-          gender: this.selectedGender,
           dateOfBirth: this.dateOfBirth,
           location: this.location,
           hobbies: this.multiSelectedValues,
           // ... other data properties ...
         });
 
-        useAuthStore().sidebarOpen = false;
+        this.sidebarOpen = false;
         window.location.reload();
       } catch (error) {
-        useAuthStore().sidebarOpen = true;
+        this.sidebarOpen = true;
         console.error(error);
       }
     },

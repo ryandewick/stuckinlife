@@ -26,6 +26,7 @@
 
 <script>
 import { useAuthStore } from "@/stores/authStore";
+import { mapState } from "pinia";
 
 import sInput from "./Input.vue";
 import sButton from "./Button.vue";
@@ -46,20 +47,19 @@ export default {
     };
   },
   computed: {
-    authError() {
-      return useAuthStore().authError;
-    },
+    ...mapState(useAuthStore, ["authError", "sidebarOpen"]),
   },
+
   methods: {
     async signIn() {
       try {
         await useAuthStore().signIn(this.email, this.password);
-        // Optionally, redirect to a different page after successful sign-in
+
         this.$router.push("/courses");
-        useAuthStore().sidebarOpen = false;
+        this.sidebarOpen = false;
         window.location.reload();
       } catch (error) {
-        useAuthStore().sidebarOpen = true;
+        this.sidebarOpen = true;
         console.error("Error during sign-in:", error.message);
       }
     },

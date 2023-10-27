@@ -76,6 +76,7 @@ import { useAuthStore } from "@/stores/authStore";
 import sSidebar from "@/components/Sidebar.vue";
 import sMessageBar from "../components/MessageBar.vue";
 import sButton from "../components/Button.vue";
+import { mapState, mapActions } from "pinia";
 export default {
   components: {
     sSidebar,
@@ -90,25 +91,14 @@ export default {
   },
 
   computed: {
-    user() {
-      return useAuthStore()?.user;
-    },
-    userProfile() {
-      return useAuthStore()?.userProfile;
-    },
-    sidebarOpen() {
-      return useAuthStore()?.sidebarOpen;
-    },
+    ...mapState(useAuthStore, ["user", "userProfile", "sidebarOpen"]),
   },
 
   methods: {
-    handleSignOut() {
-      useAuthStore().signOut();
-    },
-
-    toggleSidebar() {
-      useAuthStore().toggleSidebar();
-    },
+    ...mapActions(useAuthStore, {
+      handleSignOut: "signOut",
+      toggleSidebar: "toggleSidebar",
+    }),
 
     updateIsMobile() {
       this.isMobile = window.innerWidth < 768;

@@ -43,6 +43,7 @@
 
 <script>
 import { useAuthStore } from "@/stores/authStore";
+import { mapState, mapActions } from "pinia";
 
 import sButton from "./Button.vue";
 
@@ -66,13 +67,7 @@ export default {
   },
 
   computed: {
-    user() {
-      return useAuthStore()?.user;
-    },
-
-    userProfile() {
-      return useAuthStore()?.userProfile;
-    },
+    ...mapState(useAuthStore, ["user", "userProfile"]),
 
     greetingsMessage() {
       return `Hello ${this.userProfile?.firstName}!`;
@@ -80,9 +75,9 @@ export default {
   },
 
   methods: {
-    toggleSidebar() {
-      useAuthStore().toggleSidebar();
-    },
+    ...mapActions(useAuthStore, {
+      toggleSidebar: "toggleSidebar",
+    }),
 
     goToProfile() {
       this.$router.push("/profile");
