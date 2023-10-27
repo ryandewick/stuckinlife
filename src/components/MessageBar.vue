@@ -39,11 +39,9 @@ export default {
 
   computed: {
     animationDuration() {
-      if (this.quote.length >= 100) {
-        return "20s";
-      } else {
-        return "15s";
-      }
+      const speedFactor = 4; // You can adjust this value to speed up or slow down the animation
+      const duration = this.quote.length / speedFactor;
+      return `${duration}s`;
     },
   },
 
