@@ -25,7 +25,15 @@
         placeholder=""
       />
       <p v-if="authError" class="error">{{ authError }}</p>
-      <s-button text="Continue" @click="checkForValidEmail" />
+      <div class="register__buttons">
+        <s-button
+          class="register__button-cancel"
+          text="Cancel"
+          @click="toggleSidebar"
+          variant="secondary"
+        />
+        <s-button text="Continue" @click="checkForValidEmail" />
+      </div>
     </div>
 
     <!-- Step 2: Personal Details -->
@@ -59,7 +67,15 @@
           placeholder=""
         />
       </div>
-      <s-button text="Continue" @click="nextStep" />
+      <div class="register__buttons">
+        <s-button
+          class="register__button-cancel"
+          text="Cancel"
+          @click="toggleSidebar"
+          variant="secondary"
+        />
+        <s-button text="Continue" @click="nextStep" />
+      </div>
     </div>
 
     <div v-if="step === 3">
@@ -80,14 +96,23 @@
         :is-multi-select="true"
       ></s-input>
 
-      <s-button text="Sign up" @click="signUp" />
+      <div class="register__buttons">
+        <s-button
+          class="register__button-cancel"
+          text="Cancel"
+          @click="toggleSidebar"
+          variant="secondary"
+        />
+
+        <s-button text="Sign up" @click="signUp" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { useAuthStore } from "../stores/authStore";
-import { mapState } from "pinia";
+import { mapState, mapActions } from "pinia";
 
 import sInput from "./Input.vue";
 import sButton from "./Button.vue";
@@ -126,9 +151,15 @@ export default {
     };
   },
   computed: {
-    ...mapState(useAuthStore, ["authError", "sidebarOpen"]),
+    ...mapState(useAuthStore, ["sidebarOpen", "authError"]),
   },
   methods: {
+    ...mapActions(useAuthStore, {
+      toggleSidebar: "toggleSidebar",
+      handleAuthError: "handleAuthError",
+      checkEmailExists: "checkEmailExists",
+    }),
+
     nextStep() {
       this.step++;
     },
@@ -143,21 +174,12 @@ export default {
 
     async checkForValidEmail() {
       console.log("Method called");
-      if (this.password !== this.confirmPassword) {
-        this.authError = "Passwords do not match.";
+
+      const emailExists = await this.checkEmailExists(this.email);
+      if (emailExists) {
         return;
       }
-
-      try {
-        const emailExists = await useAuthStore().checkEmailExists(this.email);
-        if (emailExists) {
-          this.authError = "This email is already in use.";
-          return;
-        }
-        this.step++;
-      } catch (error) {
-        console.error(error);
-      }
+      this.step++;
     },
 
     async signUp() {
@@ -180,10 +202,10 @@ export default {
           // ... other data properties ...
         });
 
-        this.sidebarOpen = false;
+        this.toggleSidebar();
         window.location.reload();
       } catch (error) {
-        this.sidebarOpen = true;
+        this.handleAuthError(error);
         console.error(error);
       }
     },
@@ -231,14 +253,21 @@ export default {
     margin-bottom: 8px;
     border-radius: 4px;
   }
+
+  &__buttons {
+    display: flex;
+    gap: 4px;
+    z-index: 2;
+    margin-top: 40px;
+  }
 }
 .s-input {
   z-index: 2;
   margin-bottom: 12px;
 }
 
-.s-button {
-  z-index: 2;
-  margin-top: 40px;
-}
+// .s-button {
+//   z-index: 2;
+//   margin-top: 40px;
+// }
 </style>

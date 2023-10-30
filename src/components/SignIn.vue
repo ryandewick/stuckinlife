@@ -19,14 +19,22 @@
       />
       <span>{{ authError }}</span>
 
-      <s-button class="sign-in__button" text="Login" @click="signIn" />
+      <div class="sign-in__buttons">
+        <s-button
+          class="sign-in__button-cancel"
+          text="Cancel"
+          @click="toggleSidebar"
+          variant="secondary"
+        />
+        <s-button class="sign-in__button-login" text="Login" @click="signIn" />
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import { useAuthStore } from "@/stores/authStore";
-import { mapState } from "pinia";
+import { mapActions, mapState } from "pinia";
 
 import sInput from "./Input.vue";
 import sButton from "./Button.vue";
@@ -51,6 +59,9 @@ export default {
   },
 
   methods: {
+    ...mapActions(useAuthStore, {
+      toggleSidebar: "toggleSidebar",
+    }),
     async signIn() {
       try {
         await useAuthStore().signIn(this.email, this.password);
@@ -81,7 +92,9 @@ export default {
     margin-bottom: 12px;
   }
 
-  &__button {
+  &__buttons {
+    display: flex;
+    gap: 4px;
     z-index: 2;
     margin-top: 40px;
   }

@@ -24,8 +24,12 @@ export const useAuthStore = defineStore({
     async checkEmailExists(email) {
       const userDocRef = doc(db, "users", email.toLowerCase());
       const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        this.authError = "This email is already in use.";
+      }
       return userDoc.exists();
     },
+
     async signUp(email, password, additionalData) {
       try {
         // Create a new user in Firebase Authentication
@@ -110,10 +114,8 @@ export const useAuthStore = defineStore({
     },
 
     handleAuthError(error) {
+      console.log(error);
       switch (error.code) {
-        case "auth/email-already-in-use":
-          this.authError = "This email is already in use.";
-          break;
         case "auth/weak-password":
           this.authError = "The password is too weak.";
           break;
@@ -124,7 +126,7 @@ export const useAuthStore = defineStore({
           this.authError = "Incorrect password.";
           break;
         default:
-          this.authError = error.message;
+          this.authError = error;
       }
       console.error("Error in authStore:", this.authError);
     },
