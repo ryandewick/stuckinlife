@@ -47,7 +47,6 @@ export const useAuthStore = defineStore({
         this.authError = null;
       } catch (error) {
         this.handleAuthError(error);
-        throw error;
       }
     },
 
@@ -72,7 +71,6 @@ export const useAuthStore = defineStore({
         this.user = null;
         this.userProfile = null;
       } catch (error) {
-        console.error("Error signing out:", error);
         throw error;
       }
     },
@@ -105,7 +103,6 @@ export const useAuthStore = defineStore({
         const userDocRef = doc(db, "users", email.toLowerCase());
         await setDoc(userDocRef, additionalData, { merge: true });
       } catch (error) {
-        console.error("Error updating user profile:", error);
         throw error;
       }
     },
@@ -114,8 +111,11 @@ export const useAuthStore = defineStore({
     },
 
     handleAuthError(error) {
-      console.log(error);
       switch (error.code) {
+        case "auth/invalid-login-credentials":
+          this.authError =
+            "The email or the password you have entered is incorrect.";
+          break;
         case "auth/weak-password":
           this.authError = "The password is too weak.";
           break;
@@ -125,10 +125,13 @@ export const useAuthStore = defineStore({
         case "auth/wrong-password":
           this.authError = "Incorrect password.";
           break;
+        case "auth/too-many-requests":
+          this.authError =
+            "Too many failed login attempts. Please try again later.";
+          break;
         default:
           this.authError = error;
       }
-      console.error("Error in authStore:", this.authError);
     },
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;

@@ -17,10 +17,11 @@
           <router-link
             class="navbar__link"
             :to="item.url"
-            v-for="item in navLinks"
+            v-for="item in computedNavLinks"
             :key="item.name"
-            >{{ item.name }}</router-link
           >
+            {{ item.name }}
+          </router-link>
         </div>
         <div class="navbar__button-wrapper">
           <s-button
@@ -55,7 +56,7 @@ export default {
     return {
       navLinks: [
         {
-          name: "About us",
+          name: "About Us",
           url: "/about-us",
         },
         {
@@ -68,6 +69,17 @@ export default {
 
   computed: {
     ...mapState(useAuthStore, ["user", "userProfile"]),
+
+    computedNavLinks() {
+      let links = [...this.navLinks];
+      if (this.userProfile?.admin) {
+        links.push({
+          name: "Admin Dashboard",
+          url: "/admin",
+        });
+      }
+      return links;
+    },
 
     greetingsMessage() {
       return `Hello ${this.userProfile?.firstName}!`;
@@ -82,6 +94,10 @@ export default {
     goToProfile() {
       this.$router.push("/profile");
     },
+  },
+
+  mounted() {
+    console.log(this.baseNavLinks);
   },
 };
 </script>

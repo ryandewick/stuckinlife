@@ -72,11 +72,11 @@
       </div>
       <div class="container">
         <p class="index__info-info">
-          StuckInLife is your personalised career navigator in the vast
-          landscape of professional opportunities. Have you ever felt adrift,
-          unsure of which path to take? That's where we come in. At StuckInLife,
-          we delve deep into your personal profile to identify a career that
-          truly aligns with your passions and strengths.
+          StuckInLife or Stuck in Life is your personalised career navigator in
+          the vast landscape of professional opportunities. Have you ever felt
+          adrift, unsure of which path to take? That's where we come in. At
+          StuckInLife, we delve deep into your personal profile to identify a
+          career that truly aligns with your passions and strengths.
           <strong class="index__info-info-bold">
             But our support doesn't stop at mere suggestions.</strong
           >
