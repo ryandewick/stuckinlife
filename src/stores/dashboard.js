@@ -4,7 +4,6 @@ import { collection, getDocs } from "firebase/firestore";
 
 export const useDashboardStore = defineStore("dashboard", {
   state: () => ({
-    adminUsers: [],
     allUsers: [],
     loading: false,
     error: null,
