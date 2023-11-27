@@ -103,7 +103,7 @@ export default {
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  background-color: $light-color;
+  background-color: #f3f3f3;
   border-left: 1px solid $primary-color;
 
   @include tabletAndDesktop {
@@ -123,12 +123,12 @@ export default {
     font-size: 16px;
     width: 100%;
     background-color: $primary-color;
-    color: $light-color;
+    color: #f3f3f3;
     text-align: center;
 
     &--active {
       color: $primary-color;
-      background-color: $light-color;
+      background-color: #f3f3f3;
     }
 
     &:hover {

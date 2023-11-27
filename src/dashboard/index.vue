@@ -92,14 +92,14 @@ export default {
   thead {
     tr {
       background-color: $primary-color;
-      color: $light-color;
+      color: #f3f3f3;
     }
   }
 
   th,
   td {
     padding: 12px 20px;
-    border-bottom: 1px solid $secondary-color;
+    border-bottom: 1px solid $primary-color;
   }
 
   th {

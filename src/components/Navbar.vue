@@ -8,12 +8,26 @@
             src="../assets/stuckinlife.webp"
             alt=""
           />
-          <a v-if="!user" class="navbar__brand-name" href="/">Stuckinlife</a>
+          <a v-if="!user" class="navbar__brand-name" href="/"
+            >StuckIn<strong>Life</strong></a
+          >
           <a v-if="user" class="navbar__brand-name" href="/courses"
-            >Stuckinlife</a
+            >StuckIn<strong>Life</strong></a
           >
         </div>
-        <div class="navbar__links">
+        <button
+          @click="toggleMobileMenu"
+          class="navbar__toggle"
+          v-show="isMobile"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div
+          class="navbar__links"
+          :class="{ 'navbar__links--active': isMenuOpen }"
+        >
           <router-link
             class="navbar__link"
             :to="item.url"
@@ -23,20 +37,7 @@
             {{ item.name }}
           </router-link>
         </div>
-        <div class="navbar__button-wrapper">
-          <s-button
-            v-if="!user"
-            text="Register / Login"
-            variant="secondary"
-            @click="toggleSidebar"
-          />
-          <s-button
-            v-else
-            :text="greetingsMessage"
-            variant="secondary"
-            @click="goToProfile"
-          />
-        </div>
+        <div class="navbar__button-wrapper"></div>
       </div>
     </div>
   </nav>
@@ -46,12 +47,7 @@
 import { useAuthStore } from "@/stores/authStore";
 import { mapState, mapActions } from "pinia";
 
-import sButton from "./Button.vue";
-
 export default {
-  components: {
-    sButton,
-  },
   data() {
     return {
       navLinks: [
@@ -63,8 +59,20 @@ export default {
           name: "Blog",
           url: "/blog",
         },
+        // ... add more links as needed
       ],
+      isMobile: false,
+      isMenuOpen: false,
     };
+  },
+
+  created() {
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize);
+  },
+
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   },
 
   computed: {
@@ -91,13 +99,18 @@ export default {
       toggleSidebar: "toggleSidebar",
     }),
 
+    handleResize() {
+      this.isMobile = window.innerWidth < 768;
+    },
+
+    toggleMobileMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+
     goToProfile() {
       this.$router.push("/profile");
     },
-  },
-
-  mounted() {
-    console.log(this.baseNavLinks);
+    // ... any additional methods
   },
 };
 </script>
@@ -108,46 +121,100 @@ export default {
 
 nav {
   background-color: $primary-color;
-}
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &__brand {
+  .navbar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 10px;
 
-    &-logo {
-      width: 50px;
-      filter: brightness(1000%);
-      margin-right: 12px;
+    &__brand {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      &-logo {
+        width: 40px;
+        filter: brightness(1000%);
+        margin-right: 10px;
+      }
+
+      &-name {
+        font-size: 18px;
+        color: #f3f3f3;
+      }
     }
 
-    &-name {
-      font-size: 20px;
-      font-weight: 700;
-      color: $light-color;
+    &__toggle {
+      display: block;
+      cursor: pointer;
+      border: none;
+      background: none;
+
+      span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #f3f3f3;
+        margin: 5px 0;
+        transition: 0.4s;
+      }
     }
-  }
 
-  &__link {
-    color: $light-color;
-    margin-right: 24px;
-    font-size: 1.6rem;
-    text-decoration: none;
+    &__links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
 
-    &:hover {
-      color: $secondary-color;
+      &--active {
+        display: flex;
+      }
     }
-  }
 
-  &__button-wrapper {
-    display: none;
+    &__link {
+      color: #f3f3f3;
+      margin: 10px 0;
+      font-size: 1.6rem;
+      text-decoration: none;
+
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+
+    &__button-wrapper {
+      display: none;
+    }
 
     @include tabletAndDesktop {
-      display: block;
+      &__toggle {
+        display: none;
+      }
+
+      &__links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      &__link {
+        margin: 0 12px;
+      }
+
+      &__button-wrapper {
+        display: block;
+      }
+
+      &__brand-logo {
+        width: 50px;
+        margin-right: 12px;
+      }
+
+      &__brand-name {
+        font-size: 20px;
+      }
     }
   }
 }

@@ -247,7 +247,7 @@ export default {
   &__hobbies-tag {
     display: inline-block;
     background-color: $primary-color;
-    color: $light-color;
+    color: #f3f3f3;
     padding: 4px 8px;
     margin-right: 8px;
     margin-bottom: 8px;

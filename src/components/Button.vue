@@ -1,56 +1,31 @@
 <template>
-  <button
-    class="s-button"
-    :class="{
-      's-button--primary': variant === 'primary',
-      's-button--secondary': variant === 'secondary',
-    }"
-  >
-    {{ text }}
+  <button>
+    <slot />
   </button>
 </template>
-
-<script>
-export default {
-  name: "s-button",
-  props: {
-    text: {
-      type: String,
-      default: "Click me",
-    },
-    variant: {
-      type: String,
-      default: "primary",
-    },
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
-.s-button {
-  position: relative;
-  padding: 8px 40px;
-  width: 100%;
-  font-size: 20px;
-  font-weight: 400;
-  border: none;
+
+button {
   cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: #0186ba;
+  box-shadow: 0px 24px 50px -10px rgba(0, 0, 0, 0.44);
+  padding: 16px 24px;
+  font-size: 1.6rem;
+  line-height: 160%;
+  font-weight: 700;
+  color: white;
 
   @include tabletAndDesktop {
-    max-height: 40px;
-    max-width: 230px;
+    padding: 16px 40px;
   }
 
-  &--primary {
-    background-color: $primary-color; // Primary background color
-    color: $light-color; // Primary text color
-  }
-
-  &--secondary {
-    background-color: #dde2e3; // Secondary background color
-    color: $primary-color; // Secondary text color
+  &:hover {
+    background-color: darken(#0186ba, 5%);
   }
 }
 </style>

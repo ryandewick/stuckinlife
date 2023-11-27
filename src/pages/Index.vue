@@ -1,117 +1,43 @@
 <template>
   <div class="index">
-    <s-message-bar />
-    <s-sidebar
-      :isSidebarOpen="sidebarOpen"
-      @keydown.esc="toggleSidebar"
-      class="index__sidebar"
-    />
-    <div class="index__hero">
+    <div class="index__hero-wrapper">
       <div class="container">
-        <div class="index__hero-wrapper">
-          <div>
-            <div class="index__header">
-              <img
-                class="index__header-image"
-                src="../assets/stuckinlife.webp"
-                alt="stuckinlife logo"
-              />
-              <div>
-                <h1 class="index__header-title">StuckInLife</h1>
-                <h2 class="index__header-sub">
-                  Unlock your career potential: Let's find your perfect match!
-                </h2>
-              </div>
-            </div>
-            <div class="index__header-cta-wrapper">
-              <s-button
-                v-if="!isMobile"
-                text="Get Started"
-                variant="secondary"
-                @click="toggleSidebar"
-              ></s-button>
-              <div>
-                <span>Watch this video to show you how to get setup</span>
-                <br />
-                <svg
-                  class="index__header-cta-arrow"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 327 24"
-                  fill="none"
-                >
-                  <path
-                    d="M326.065 13.0574C326.648 12.4698 326.645 11.5201 326.057 10.9361L316.475 1.4196C315.887 0.835616 314.938 0.83854 314.354 1.42613C313.771 2.01371 313.774 2.96345 314.362 3.54743L322.879 12.0065L314.425 20.5179C313.841 21.1055 313.845 22.0552 314.433 22.6392C315.021 23.2232 315.97 23.2202 316.554 22.6327L326.065 13.0574ZM0.200629 14.5L325.006 13.5L324.994 10.5L0.189508 11.5L0.200629 14.5Z"
-                    fill="white"
-                  />
-                </svg>
-              </div>
-            </div>
+        <div class="index__hero">
+          <div class="index__hero-left">
+            <h1>Unlock your career potential</h1>
+            <p>Let’s find the perfect course for you!</p>
+            <s-button>Get Started for FREE</s-button>
           </div>
-
-          <div class="index__video-wrapper">
-            <!-- <video class="index__video" controls>
-            <source src="" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video> -->
-            <img src="../assets/video-template.svg" alt="" />
+          <img
+            class="index__hero-logo"
+            src="../assets/half-logo-hero.svg"
+            alt="half of the stuck in life logo"
+          />
+          <div class="index__hero-woman-wrapper">
+            <img
+              class="index__hero-arrow"
+              src="../assets/arrow-shape-hero.svg"
+              alt=""
+            />
+            <img
+              class="index__hero-woman"
+              src="../assets/woman-hero.png"
+              alt="a woman looking proud"
+            />
           </div>
-          <s-button
-            v-if="isMobile"
-            text="Get Started"
-            variant="secondary"
-            @click="toggleSidebar"
-          ></s-button>
         </div>
-      </div>
-    </div>
-    <div class="index__info">
-      <div class="index__info-sub-header-wrapper">
-        <div class="container">
-          <h3 class="index__info-sub-header">What is StuckInLife?</h3>
-        </div>
-      </div>
-      <div class="container">
-        <p class="index__info-info">
-          StuckInLife or Stuck in Life is your personalised career navigator in
-          the vast landscape of professional opportunities. Have you ever felt
-          adrift, unsure of which path to take? That's where we come in. At
-          StuckInLife, we delve deep into your personal profile to identify a
-          career that truly aligns with your passions and strengths.
-          <strong class="index__info-info-bold">
-            But our support doesn't stop at mere suggestions.</strong
-          >
-
-          We further equip you with a curated list of courses, ensuring you're
-          well-prepared for your chosen field. The journey is yours to command:
-          learn at your own pace, set distinct milestones, and track your
-          progress through a tailored roadmap. With StuckInLife, career planning
-          becomes not just a necessity, but a thrilling adventure!
-        </p>
-        <router-link class="index__info-about-us-link" to="/about-us"
-          >Read more ></router-link
-        >
       </div>
     </div>
   </div>
-
-  <h3 v-if="userProfile?.firstName">
-    Hello {{ userProfile?.firstName }} {{ userProfile?.lastName }}
-  </h3>
-  <p v-if="userProfile?.location">Location: {{ userProfile?.location }}</p>
-
-  <button v-if="user" @click="handleSignOut">Sign out</button>
 </template>
 
 <script>
 import { useAuthStore } from "@/stores/authStore";
-import sSidebar from "@/components/Sidebar.vue";
-import sMessageBar from "../components/MessageBar.vue";
-import sButton from "../components/Button.vue";
 import { mapState, mapActions } from "pinia";
+
+import sButton from "@/components/Button.vue";
 export default {
   components: {
-    sSidebar,
-    sMessageBar,
     sButton,
   },
 
@@ -151,127 +77,109 @@ export default {
 @import "src/assets/mixins/_breakpoints.scss";
 
 .index {
-  &__sidebar {
-    z-index: 1000;
-  }
-
   &__hero {
-    background-color: $primary-color;
-
-    &-wrapper {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      justify-content: space-evenly;
-
-      @include desktop {
-        flex-direction: row;
-      }
-    }
-  }
-
-  &__header {
     display: flex;
+    flex-shrink: 1;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: $light-color;
-    margin-top: 32px;
+    text-align: center;
+    color: white;
 
     @include desktop {
-      margin-top: 0;
-      justify-content: revert;
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
     }
 
-    &-image {
-      width: 80px;
-      filter: brightness(1000%);
-      margin-right: 24px;
-      margin-bottom: 32px;
-
-      @include tabletAndDesktop {
-        width: 100px;
-        margin-bottom: 0px;
-      }
+    &-logo,
+    &-arrow {
+      position: absolute;
     }
 
-    &-title {
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
+    &-logo {
+      top: 0;
+      left: 0;
+      height: 325px;
 
-    &-sub {
-      width: auto;
-      font-style: italic;
-      font-size: 1.6rem;
-      // color: rgba(0, 0, 0, 0.25);
-      color: $light-color;
-      margin-bottom: 32px;
-
-      @include tabletAndDesktop {
-        font-size: 2rem;
-        margin-bottom: 0;
+      @include tablet {
+        top: 50px;
+        height: 450px;
       }
 
       @include desktop {
-        width: 380px;
+        height: 588px;
       }
     }
 
-    &-cta-wrapper {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      color: $light-color;
+    &-arrow {
+      width: 82px;
+      right: 0;
 
-      @include tabletAndDesktop {
-        margin-top: 40px;
-        width: 720px;
+      @include tablet {
+        width: 200px;
+        right: -90px;
       }
 
       @include desktop {
-        justify-content: revert;
+        width: 255px;
+        top: 180px;
+        right: -140px;
       }
     }
-  }
 
-  &__video-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    &-woman {
+      width: 365px;
 
-    img {
-      width: 100%;
-    }
-  }
+      @include tablet {
+        width: 450px;
+      }
 
-  &__info {
-    margin-top: 24px;
-
-    &-sub-header {
-      color: $light-color;
-      // margin-bottom: 16px;
+      @include desktop {
+        width: 595px;
+      }
 
       &-wrapper {
-        background-color: $secondary-color;
+        position: relative;
       }
     }
 
-    &-about-us-link {
-      text-decoration: underline;
-      color: $dark-color;
-      font-size: 1.6rem;
+    &-wrapper {
+      position: relative;
+      background-color: $primary-color;
+
+      .container {
+        padding-bottom: 0;
+      }
     }
 
-    &-info {
-      color: $dark-color;
-      margin-bottom: 16px;
+    & > * {
+      margin-top: 3.2rem;
 
-      &-bold {
-        margin-top: 12px;
-        margin-bottom: 12px;
-        display: block;
+      @include desktop {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 3.2rem;
+
+      @include tabletAndDesktop {
+        font-size: 2.4rem;
+      }
+
+      @include desktop {
+        margin-bottom: 4.8rem;
+      }
+    }
+
+    button {
+      margin-bottom: 3.2rem;
+
+      @include desktop {
+        margin-bottom: 0;
       }
     }
   }
