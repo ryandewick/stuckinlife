@@ -305,6 +305,7 @@ export default {
       h3 {
         color: $secondary-color;
         font-size: 3rem;
+        margin-bottom: 4px;
       }
 
       p {
