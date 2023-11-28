@@ -43,7 +43,6 @@ export default {
 @import "src/assets/mixins/_breakpoints.scss";
 .steps-card {
   display: flex;
-  flex-grow: 1 1 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
