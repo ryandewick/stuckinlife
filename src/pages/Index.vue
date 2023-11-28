@@ -70,9 +70,22 @@
         </div>
       </div>
     </div>
-    <!-- <div class="index__steps-wrapper">
-      <div class="container">test</div>
-    </div> -->
+    <div class="index__steps-wrapper">
+      <div class="container">
+        <h2>3 easy steps unlock your career</h2>
+        <div class="index__steps">
+          <s-steps-card
+            v-for="item in stepsInfo"
+            :key="item"
+            :img="item.img"
+            :imgAlt="item.imgAlt"
+            :title="item.title"
+            :info="item.info"
+            :step="item.step"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -81,14 +94,39 @@ import { useAuthStore } from "@/stores/authStore";
 import { mapState, mapActions } from "pinia";
 
 import sButton from "@/components/Button.vue";
+import sStepsCard from "@/components/StepsCard.vue";
 export default {
   components: {
     sButton,
+    sStepsCard,
   },
 
   data() {
     return {
       isMobile: window.innerWidth < 768,
+      stepsInfo: [
+        {
+          img: "../assets/section-2_steps_icon-1.svg",
+          imgAlt: "Improvement icon",
+          title: "Discover Your Potential",
+          info: "Uncover the possibilities within you and identify the career that aligns with your unique strengths.",
+          step: "Step 1",
+        },
+        {
+          img: "../assets/section-2_steps_icon-2.svg",
+          imgAlt: "Online learning icon",
+          title: "Explore Tailored Courses",
+          info: "Embark on a tailored learning journey, equipping you with skills for success in your role.",
+          step: "Step 2",
+        },
+        {
+          img: "../assets/section-2_steps_icon-3.svg",
+          imgAlt: "Consulting icon",
+          title: "Connect with Experts",
+          info: "Tap into the wisdom of industry professionals who are here to guide you through the challenges and successes.",
+          step: "Step 3",
+        },
+      ],
     };
   },
 
@@ -232,7 +270,7 @@ export default {
   &__stats {
     display: flex;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     .container {
       padding-top: 0px;
@@ -279,6 +317,33 @@ export default {
         @include desktop {
           display: block;
           margin-right: 2.4rem;
+        }
+      }
+    }
+  }
+
+  &__steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: sp;
+    flex-direction: column;
+    gap: 24px;
+
+    @include tabletAndDesktop {
+      flex-direction: row;
+      gap: 32px;
+    }
+
+    &-wrapper {
+      h2 {
+        font-size: 3.2rem;
+        color: $secondary-color;
+        margin-bottom: 24px;
+        text-align: center;
+
+        @include tabletAndDesktop {
+          font-size: 4rem;
+          margin-bottom: 32px;
         }
       }
     }
