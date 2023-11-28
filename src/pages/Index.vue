@@ -28,6 +28,51 @@
         </div>
       </div>
     </div>
+    <div class="index__stats-wrapper">
+      <div class="container">
+        <div class="index__stats">
+          <div class="index__stats-item">
+            <div class="index__stats-item__icon">
+              <img
+                src="../assets/home-2_counter-icon-1.svg"
+                alt="webinar icon"
+              />
+            </div>
+            <div>
+              <h3>180+</h3>
+              <p>Courses & Resources</p>
+            </div>
+          </div>
+          <div class="index__stats-item">
+            <div class="index__stats-item__icon">
+              <img
+                src="../assets/home-2_counter-icon-2.svg"
+                alt="webinar icon"
+              />
+            </div>
+            <div>
+              <h3>24/7</h3>
+              <p>Access anytime, anywhere</p>
+            </div>
+          </div>
+          <div class="index__stats-item">
+            <div class="index__stats-item__icon">
+              <img
+                src="../assets/home-2_counter-icon-3.svg"
+                alt="webinar icon"
+              />
+            </div>
+            <div>
+              <h3>300</h3>
+              <p>Top Certifications</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="index__steps-wrapper">
+      <div class="container">test</div>
+    </div> -->
   </div>
 </template>
 
@@ -180,6 +225,61 @@ export default {
 
       @include desktop {
         margin-bottom: 0;
+      }
+    }
+  }
+
+  &__stats {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+    .container {
+      padding-top: 0px;
+    }
+
+    &-wrapper {
+      padding-top: 56px;
+      padding-bottom: 88px;
+
+      @include tabletAndDesktop {
+        padding-top: 80px;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-right: 1px solid #dedede;
+      flex: 1 1 0;
+      // padding-inline: 0.6rem;
+
+      @include desktop {
+        text-align: left;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      h3 {
+        color: $secondary-color;
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.4rem;
+      }
+
+      &__icon {
+        display: none;
+
+        @include desktop {
+          display: block;
+          margin-right: 2.4rem;
+        }
       }
     }
   }
