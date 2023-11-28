@@ -160,6 +160,7 @@ export default {
 @import "src/assets/mixins/_breakpoints.scss";
 
 .index {
+  overflow-x: hidden;
   &__hero {
     display: flex;
     flex-shrink: 1;
