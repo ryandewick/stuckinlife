@@ -43,21 +43,23 @@ export default {
 @import "src/assets/mixins/_breakpoints.scss";
 .steps-card {
   display: flex;
+  flex-grow: 1 1 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
 
-  @include tabletAndDesktop {
+  @include desktop {
     height: 354px;
     width: 380px;
   }
   &__wrapper {
     padding: 50px 40px;
     background-color: rgba(239, 247, 250, 0.5);
+    width: 100%;
     text-align: center;
 
-    @include tabletAndDesktop {
+    @include desktop {
       padding: 50px 35px 24px;
     }
 

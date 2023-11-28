@@ -330,7 +330,7 @@ export default {
     flex-direction: column;
     gap: 24px;
 
-    @include tabletAndDesktop {
+    @include desktop {
       flex-direction: row;
       gap: 32px;
     }
