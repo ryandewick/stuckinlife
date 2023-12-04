@@ -6,7 +6,7 @@
           <div class="index__hero-left">
             <h1>Unlock your career potential</h1>
             <p>Let’s find the perfect course for you!</p>
-            <s-button>Get Started for FREE</s-button>
+            <s-button variant="primary">Get Started for FREE</s-button>
           </div>
           <img
             class="index__hero-logo"
@@ -83,6 +83,47 @@
             :info="item.info"
             :step="item.step"
           />
+        </div>
+      </div>
+    </div>
+    <div class="index__what-is-stuckinlife-wrapper">
+      <div class="container">
+        <div class="index__what-is-stuckinlife">
+          <div class="index__what-is-stuckinlife__img-wrapper">
+            <div class="index__what-is-stuckinlife__img-green-shape"></div>
+            <div class="index__what-is-stuckinlife__img-info">
+              <p>75%</p>
+              <span>Of people learning</span>
+            </div>
+            <img
+              class="index__what-is-stuckinlife__img"
+              src="../assets/man-holding.svg"
+              alt="a man holding something he has made"
+            />
+          </div>
+          <div class="index__what-is-stuckinlife__info">
+            <h2>What is StuckInLife?</h2>
+            <p>
+              StuckInLife or Stuck in Life is your personalised career navigator
+              in the vast landscape of professional opportunities. Have you ever
+              felt adrift, unsure of which path to take? That's where we come
+              in. At StuckInLife, we delve deep into your personal profile to
+              identify a career that truly aligns with your passions and
+              strengths
+            </p>
+            <p class="index__what-is-stuckinlife__subheader">
+              But our support doesn't stop at mere suggestions.
+            </p>
+            <p>
+              We further equip you with a curated list of courses, ensuring
+              you're well-prepared for your chosen field. The journey is yours
+              to command: learn at your own pace, set distinct milestones, and
+              track your progress through a tailored roadmap. With StuckInLife,
+              career planning becomes not just a necessity, but a thrilling
+              adventure!
+            </p>
+            <s-button variant="secondary">Learn More</s-button>
+          </div>
         </div>
       </div>
     </div>
@@ -169,6 +210,7 @@ export default {
     justify-content: center;
     text-align: center;
     color: white;
+    z-index: 1000;
 
     @include desktop {
       flex-direction: row;
@@ -327,7 +369,7 @@ export default {
   &__steps {
     display: flex;
     align-items: flex-start;
-    justify-content: sp;
+    // justify-content: sp;
     flex-direction: column;
     gap: 24px;
 
@@ -337,6 +379,8 @@ export default {
     }
 
     &-wrapper {
+      padding-top: 90px;
+      padding-bottom: 90px;
       h2 {
         font-size: 3.2rem;
         color: $secondary-color;
@@ -348,6 +392,121 @@ export default {
           margin-bottom: 32px;
         }
       }
+    }
+  }
+
+  &__what-is-stuckinlife {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include tabletAndDesktop {
+      flex-direction: row;
+    }
+
+    @include tablet {
+      gap: 80px;
+    }
+
+    @include desktop {
+      gap: 120px;
+    }
+
+    &-wrapper {
+      background-color: #f8f8f8;
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    &__img {
+      width: 310px;
+
+      @include desktop {
+        width: 465px;
+      }
+      &-wrapper {
+        position: relative;
+        margin-bottom: 72px;
+        margin-left: 32px;
+        width: 310px;
+
+        @include desktop {
+          width: 465px;
+        }
+      }
+
+      &-green-shape {
+        position: absolute;
+        left: -30px;
+        bottom: 12px;
+        width: 30px;
+        height: 328px;
+        border-radius: 4px 0 0 4px;
+        background: $accent-color;
+
+        @include tablet {
+          top: 12px;
+        }
+
+        @include desktop {
+          top: 56px;
+          left: -38px;
+          width: 39px;
+          height: 423px;
+        }
+      }
+
+      &-info {
+        position: absolute;
+        bottom: -42px;
+        right: 16px;
+        padding: 16px 12px;
+        text-align: center;
+        background: white;
+        box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.08);
+        border-radius: 4px;
+        @include desktop {
+          padding: 16px 24px;
+        }
+        p {
+          font-weight: 700;
+          font-size: 32px;
+          color: $secondary-color !important;
+
+          @include desktop {
+            font-size: 4rem;
+          }
+        }
+        span {
+          font-size: 1.4rem;
+          color: #454545;
+          @include desktop {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+
+    h2 {
+      color: $secondary-color;
+      margin-bottom: 16px;
+      font-size: 3.2rem;
+    }
+
+    p {
+      color: $grey-color;
+    }
+
+    &__subheader {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #222;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .button {
+      margin-top: 32px;
     }
   }
 }

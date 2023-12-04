@@ -1,18 +1,37 @@
 <template>
-  <button>
+  <button
+    :class="[
+      'button',
+      {
+        'button--primary': variant === 'primary',
+        'button--secondary': variant === 'secondary',
+      },
+    ]"
+  >
     <slot />
   </button>
 </template>
+
+<script>
+export default {
+  props: {
+    variant: {
+      type: String,
+      required: true,
+      validator: (value) => ["primary", "secondary"].includes(value),
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 
-button {
+.button {
   cursor: pointer;
   border: none;
   border-radius: 4px;
-  background: #0186ba;
   box-shadow: 0px 24px 50px -10px rgba(0, 0, 0, 0.44);
   padding: 16px 24px;
   font-size: 1.6rem;
@@ -24,8 +43,20 @@ button {
     padding: 16px 40px;
   }
 
-  &:hover {
-    background-color: darken(#0186ba, 5%);
+  &--primary {
+    background: #0186ba;
+
+    &:hover {
+      background-color: darken(#0186ba, 5%);
+    }
+  }
+
+  &--secondary {
+    background: #115e7c;
+
+    &:hover {
+      background-color: darken(#115e7c, 5%);
+    }
   }
 }
 </style>
