@@ -32,7 +32,7 @@
       <div class="container">
         <div class="index__stats">
           <div class="index__stats-item">
-            <div class="index__stats-item__icon">
+            <div class="index__stats-item-icon">
               <img
                 src="../assets/home-2_counter-icon-1.svg"
                 alt="webinar icon"
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="index__stats-item">
-            <div class="index__stats-item__icon">
+            <div class="index__stats-item-icon">
               <img
                 src="../assets/home-2_counter-icon-2.svg"
                 alt="webinar icon"
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="index__stats-item">
-            <div class="index__stats-item__icon">
+            <div class="index__stats-item-icon">
               <img
                 src="../assets/home-2_counter-icon-3.svg"
                 alt="webinar icon"
@@ -127,6 +127,11 @@
         </div>
       </div>
     </div>
+    <div class="blogs-wrapper">
+      <div class="container">
+        <blog-card-slider :blogs="blogs" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -136,14 +141,72 @@ import { mapState, mapActions } from "pinia";
 
 import sButton from "@/components/Button.vue";
 import sStepsCard from "@/components/StepsCard.vue";
+import BlogCardSlider from "@/components/blogs/BlogCardSlider.vue";
 export default {
   components: {
     sButton,
     sStepsCard,
+    BlogCardSlider,
   },
 
   data() {
     return {
+      blogs: [
+        {
+          id: 1,
+          title: "Career Exploration Essentials: Discover Your Path to Success",
+          author: "Ryan Dewick",
+          date: new Date().toLocaleDateString(),
+          image: "/assets/test-blog-image.svg",
+          description:
+            "Continually restore premier e-business via prospective results.",
+        },
+        {
+          id: 1,
+          title: "Career Exploration Essentials: Discover Your Path to Success",
+          author: "Ryan Dewick",
+          date: new Date().toLocaleDateString(),
+          image: "/assets/test-blog-image1.svg",
+          description:
+            "Continually restore premier e-business via prospective results.",
+        },
+        {
+          id: 2,
+          title: "Career Exploration Essentials: Discover Your Path to Success",
+          author: "Ryan Dewick",
+          date: new Date().toLocaleDateString(),
+          image: "/assets/test-blog-image2.svg",
+          description:
+            "Continually restore premier e-business via prospective results.",
+        },
+        {
+          id: 1,
+          title: "Career Exploration Essentials: Discover Your Path to Success",
+          author: "Ryan Dewick",
+          date: new Date().toLocaleDateString(),
+          image: "/assets/test-blog-image3.svg",
+          description:
+            "Continually restore premier e-business via prospective results.",
+        },
+        {
+          id: 2,
+          title: "Career Exploration Essentials: Discover Your Path to Success",
+          author: "Ryan Dewick",
+          date: new Date().toLocaleDateString(),
+          image: "/assets/test-blog-image2.svg",
+          description:
+            "Continually restore premier e-business via prospective results.",
+        },
+        {
+          id: 1,
+          title: "Career Exploration Essentials: Discover Your Path to Success",
+          author: "Ryan Dewick",
+          date: new Date().toLocaleDateString(),
+          image: "/assets/test-blog-image3.svg",
+          description:
+            "Continually restore premier e-business via prospective results.",
+        },
+      ],
       isMobile: window.innerWidth < 768,
       stepsInfo: [
         {
@@ -355,7 +418,7 @@ export default {
         font-size: 1.4rem;
       }
 
-      &__icon {
+      &-icon {
         display: none;
 
         @include desktop {
