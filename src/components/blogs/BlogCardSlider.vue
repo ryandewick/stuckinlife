@@ -6,12 +6,15 @@
         v-for="blog in blogs"
         :key="blog.id"
         :style="sliderStyle"
+        v-touch:swipe="nextSlide"
       >
         <blog-card :blog="blog" />
       </div>
     </div>
     <button @click="prevSlide">Prev</button>
     <button @click="nextSlide">Next</button>
+
+    <span v-touch:swipe="swipeHandler">Swipe Left Here</span>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ export default {
   components: {
     BlogCard,
   },
+
   props: {
     blogs: {
       type: Array,
@@ -50,6 +54,9 @@ export default {
       if (this.currentSlide > 0) {
         this.currentSlide--;
       }
+    },
+    swipeHandler() {
+      console.log("swipe");
     },
   },
 };

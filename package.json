@@ -13,7 +13,8 @@
     "firebase": "^10.4.0",
     "pinia": "^2.1.6",
     "vue": "^3.2.47",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "vue3-touch-events": "^4.1.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
