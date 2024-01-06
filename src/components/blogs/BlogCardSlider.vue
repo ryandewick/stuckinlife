@@ -6,15 +6,14 @@
         v-for="blog in blogs"
         :key="blog.id"
         :style="sliderStyle"
-        v-touch:swipe="nextSlide"
+        v-touch:swipe.left="nextSlide"
+        v-touch:swipe.right="prevSlide"
       >
         <blog-card :blog="blog" />
       </div>
     </div>
     <button @click="prevSlide">Prev</button>
     <button @click="nextSlide">Next</button>
-
-    <span v-touch:swipe="swipeHandler">Swipe Left Here</span>
   </div>
 </template>
 
