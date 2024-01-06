@@ -6,30 +6,29 @@
         <span>StuckIn<strong>Life</strong></span>
       </div>
       <div class="footer__content">
-        <div class="footer__content__links">
-          <div class="footer__content__links__column">
-            <h3>Quick Links</h3>
-            <router-link to="/">Home</router-link>
-            <router-link to="/">About us</router-link>
-            <router-link to="/">Courses</router-link>
-          </div>
-          <div class="footer__content__links__column">
-            <h3>Support</h3>
-            <router-link to="/">Contact us</router-link>
-            <router-link to="/">FAQ's</router-link>
-            <router-link to="/">Privacy Policy</router-link>
-          </div>
+        <div class="footer__content-links">
+          <h3>Quick Links</h3>
+          <router-link to="/">Home</router-link>
+          <router-link to="/">About us</router-link>
+          <router-link to="/">Courses</router-link>
         </div>
-        <div class="footer__content__contact">
+        <div class="footer__content-links">
+          <h3>Support</h3>
+          <router-link to="/">Contact us</router-link>
+          <router-link to="/">FAQ's</router-link>
+          <router-link to="/">Privacy Policy</router-link>
+        </div>
+        <div class="footer__content-links footer__content-contact">
           <h3>Contact Us</h3>
           <p>business@stuckinlife.co.uk</p>
           <p>facebook-stuckinlife</p>
         </div>
       </div>
     </div>
+
     <div class="footer__copyright">
       <div class="container">
-        <p>Copyright © StuckLife 2023. All Rights Reserved</p>
+        <p>Copyright © StuckInLife 2023. All Rights Reserved</p>
       </div>
     </div>
   </footer>
@@ -62,17 +61,37 @@
   }
 
   &__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     color: white;
     padding-top: 40px;
     padding-bottom: 50px;
 
     h3 {
       font-size: 1.6rem;
+      margin-bottom: 32px;
     }
 
     a,
     p {
+      font-size: 1.6rem;
       font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    &-links {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 48px;
+    }
+
+    &-contact {
+      width: 100%;
+
+      @include tabletAndDesktop {
+        width: auto;
+      }
     }
   }
   &__copyright {
