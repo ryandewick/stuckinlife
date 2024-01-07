@@ -48,11 +48,11 @@
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
+
 .footer {
   background-color: rgba(0, 26, 36, 0.9);
 
   &__sign-up {
-    position: relative;
     background-color: #0b5978;
     border-radius: 8px;
     padding: 50px 20px;

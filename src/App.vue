@@ -35,6 +35,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
+
 .contact-us {
   z-index: 100;
   position: fixed;

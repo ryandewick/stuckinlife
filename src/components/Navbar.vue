@@ -120,6 +120,7 @@ export default {
 @import "@/assets/mixins/_breakpoints.scss";
 
 nav {
+  position: relative;
   background-color: $primary-color;
 
   .navbar {
