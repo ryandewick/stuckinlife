@@ -59,6 +59,14 @@
     margin-top: -300px;
     text-align: center;
 
+    @include tablet {
+      padding: 50px 40px;
+    }
+
+    @include desktop {
+      padding: 50px 80px;
+    }
+
     @include tabletAndDesktop {
       margin-top: -140px;
     }
@@ -73,9 +81,17 @@
       margin-bottom: 25px;
       line-height: 1.5;
 
+      @include tablet {
+        max-width: 500px;
+      }
+
+      @include desktop {
+        max-width: 648px;
+        font-size: 3.2rem;
+      }
+
       @include tabletAndDesktop {
         text-align: left;
-        max-width: 648px;
       }
     }
 
@@ -86,7 +102,7 @@
       @include tabletAndDesktop {
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
       }
     }
 

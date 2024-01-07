@@ -127,9 +127,16 @@
         </div>
       </div>
     </div>
-    <div class="blogs-wrapper">
+    <div class="index__blogs-wrapper">
       <div class="container">
-        <blog-card-slider :blogs="blogs" />
+        <div class="index__blogs-header">
+          <h2>Latest Blogs</h2>
+          <a href="/blogs">View All</a>
+        </div>
+        <div class="index__blogs-slider">
+          <blog-card-slider :blogs="blogs" />
+          <a href="/blogs">View All</a>
+        </div>
       </div>
     </div>
   </div>
@@ -398,7 +405,6 @@ export default {
       text-align: center;
       border-right: 1px solid #dedede;
       flex: 1 1 0;
-      // padding-inline: 0.6rem;
 
       @include desktop {
         text-align: left;
@@ -570,6 +576,58 @@ export default {
 
     .button {
       margin-top: 32px;
+    }
+  }
+
+  &__blogs {
+    &-wrapper {
+      padding-top: 90px;
+      padding-bottom: 380px;
+      @include tabletAndDesktop {
+        padding-top: 130px;
+        padding-bottom: 160px;
+      }
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+
+      h2 {
+        color: $secondary-color;
+      }
+
+      a {
+        display: none;
+        @include tabletAndDesktop {
+          display: block;
+          font-size: 1.6rem;
+          text-decoration: underline;
+          color: $secondary-color;
+          transition: 0.3s;
+        }
+
+        &:hover {
+          color: darken($secondary-color, 10%);
+        }
+      }
+    }
+
+    &-slider {
+      a {
+        display: block;
+        font-size: 1.6rem;
+        text-decoration: underline;
+        text-align: center;
+        color: $secondary-color;
+        transition: 0.3s;
+
+        @include tabletAndDesktop {
+          display: none;
+        }
+      }
     }
   }
 }

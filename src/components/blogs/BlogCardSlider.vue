@@ -12,8 +12,10 @@
         <blog-card :blog="blog" />
       </div>
     </div>
-    <button @click="prevSlide">Prev</button>
-    <button @click="nextSlide">Next</button>
+    <div class="blog-card-slider__buttons">
+      <button @click="prevSlide">Prev</button>
+      <button @click="nextSlide">Next</button>
+    </div>
   </div>
 </template>
 
@@ -65,6 +67,7 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .blog-card-slider {
+  position: relative;
   .slider-container {
     overflow: hidden;
     display: flex;
@@ -75,6 +78,19 @@ export default {
   .blog-card-slider__cards {
     transition: transform 0.3s ease-in-out;
     width: 100%;
+  }
+
+  &__buttons {
+    display: none;
+
+    @include tabletAndDesktop {
+      display: flex;
+      position: absolute;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      top: 160px;
+    }
   }
 }
 </style>
