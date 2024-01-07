@@ -1,48 +1,50 @@
 <template>
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__sign-up">
-        <div class="footer__sign-up-content">
-          <div>
-            <h3>Subscribe to our newsletter & get more information</h3>
-          </div>
-          <div class="footer__sign-up-form">
-            <input type="text" placeholder="Enter your email address" />
-            <button>Subscribe Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="footer-logo">
-        <img src="../assets/stuckinlife.webp" alt="logo" />
-        <span>StuckIn<strong>Life</strong></span>
-      </div>
-      <div class="footer__content">
-        <div class="footer__content-links">
-          <h3>Quick Links</h3>
-          <router-link to="/">Home</router-link>
-          <router-link to="/">About us</router-link>
-          <router-link to="/">Courses</router-link>
-        </div>
-        <div class="footer__content-links">
-          <h3>Support</h3>
-          <router-link to="/">Contact us</router-link>
-          <router-link to="/">FAQ's</router-link>
-          <router-link to="/">Privacy Policy</router-link>
-        </div>
-        <div class="footer__content-links footer__content-contact">
-          <h3>Contact Us</h3>
-          <p>business@stuckinlife.co.uk</p>
-          <p>facebook-stuckinlife</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer__copyright">
+  <div class="footer-wrapper">
+    <footer class="footer">
       <div class="container">
-        <p>Copyright © StuckInLife 2023. All Rights Reserved</p>
+        <div class="footer__sign-up">
+          <div class="footer__sign-up-content">
+            <div>
+              <h3>Subscribe to our newsletter & get more information</h3>
+            </div>
+            <div class="footer__sign-up-form">
+              <input type="text" placeholder="Enter your email address" />
+              <button>Subscribe Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="footer-logo">
+          <img src="../assets/stuckinlife.webp" alt="logo" />
+          <span>StuckIn<strong>Life</strong></span>
+        </div>
+        <div class="footer__content">
+          <div class="footer__content-links">
+            <h3>Quick Links</h3>
+            <router-link to="/">Home</router-link>
+            <router-link to="/">About us</router-link>
+            <router-link to="/">Courses</router-link>
+          </div>
+          <div class="footer__content-links">
+            <h3>Support</h3>
+            <router-link to="/">Contact us</router-link>
+            <router-link to="/">FAQ's</router-link>
+            <router-link to="/">Privacy Policy</router-link>
+          </div>
+          <div class="footer__content-links footer__content-contact">
+            <h3>Contact Us</h3>
+            <p>business@stuckinlife.co.uk</p>
+            <p>facebook-stuckinlife</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
+
+      <div class="footer__copyright">
+        <div class="container">
+          <p>Copyright © StuckInLife 2023. All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -51,6 +53,15 @@
 
 .footer {
   background-color: rgba(0, 26, 36, 0.9);
+
+  &-wrapper {
+    margin-top: 300px;
+    z-index: 100;
+
+    @include tabletAndDesktop {
+      margin-top: 140px;
+    }
+  }
 
   &__sign-up {
     background-color: #0b5978;

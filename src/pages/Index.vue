@@ -582,10 +582,10 @@ export default {
   &__blogs {
     &-wrapper {
       padding-top: 90px;
-      padding-bottom: 380px;
+      padding-bottom: 90px;
       @include tabletAndDesktop {
         padding-top: 130px;
-        padding-bottom: 160px;
+        padding-bottom: 130px;
       }
     }
 
