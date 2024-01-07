@@ -1,6 +1,17 @@
 <template>
   <footer class="footer">
     <div class="container">
+      <div class="footer__sign-up">
+        <div class="footer__sign-up-content">
+          <div>
+            <h3>Subscribe to our newsletter & get more information</h3>
+          </div>
+          <div class="footer__sign-up-form">
+            <input type="text" placeholder="Enter your email address" />
+            <button>Subscribe Now</button>
+          </div>
+        </div>
+      </div>
       <div class="footer-logo">
         <img src="../assets/stuckinlife.webp" alt="logo" />
         <span>StuckIn<strong>Life</strong></span>
@@ -39,12 +50,103 @@
 @import "@/assets/mixins/_breakpoints.scss";
 .footer {
   background-color: rgba(0, 26, 36, 0.9);
+
+  &__sign-up {
+    position: relative;
+    background-color: #0b5978;
+    border-radius: 8px;
+    padding: 50px 20px;
+    margin-top: -300px;
+    text-align: center;
+
+    @include tabletAndDesktop {
+      margin-top: -140px;
+    }
+
+    h3 {
+      font-size: 3rem;
+      font-weight: 400;
+      max-width: 350px;
+      margin: auto;
+      color: #e3ece7;
+      text-align: center;
+      margin-bottom: 25px;
+      line-height: 1.5;
+
+      @include tabletAndDesktop {
+        text-align: left;
+        max-width: 648px;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+
+      @include tabletAndDesktop {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    &-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      @include tablet {
+        width: 300px;
+      }
+
+      @include desktop {
+        width: 432px;
+      }
+
+      input {
+        width: 100%;
+        height: 56px;
+        border: 1px solid white;
+        background-color: transparent;
+        border-radius: 8px;
+        padding: 0 20px;
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: #fff;
+        outline: none;
+
+        &::placeholder {
+          color: #fff;
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 16px;
+        font-weight: 400;
+        border: none;
+        margin-top: 16px;
+        border-radius: 8px;
+        background-color: $accent-color;
+        color: #fff;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+      }
+    }
+  }
+
   &-logo {
     display: flex;
     align-items: center;
     justify-content: center;
     filter: brightness(1000%);
-    padding-top: 180px;
+    padding-top: 100px;
     padding-bottom: 40px;
     border-bottom: 1px solid rgba(200, 200, 200, 0.3);
 
