@@ -1,29 +1,36 @@
 <template>
   <div class="about-us">
-    <div class="about-us__hero">
+    <div class="about-us__hero-wrapper">
       <div class="container">
-        <span>About us</span>
-        <h1>
-          Unlock Your Career Potential: 6 Powerful Strategies You Can't Ignore
-        </h1>
-        <p>
-          Professionally envisioneer user-centric core competencies vis-a-vis
-          real-time niches. Compellingly fashion principle-centered e-commerce
-          for magnetic methods of empowerment. Collaboratively innovate
-          exceptional technology rather than low-risk high-yield manufactured
-          products. Energistically redefine.
-        </p>
-        <ul v-for="x in stepsList" :key="x">
-          <li>
-            <strong>{{ x.title }}:</strong> {{ x.desc }}
-          </li>
-        </ul>
+        <div class="about-us__hero">
+          <div>
+            <span>About us</span>
+            <h1>
+              Unlock Your Career Potential: 6 Powerful Strategies You Can't
+              Ignore
+            </h1>
+            <p>
+              Professionally envisioneer user-centric core competencies
+              vis-a-vis real-time niches. Compellingly fashion
+              principle-centered e-commerce for magnetic methods of empowerment.
+              Collaboratively innovate exceptional technology rather than
+              low-risk high-yield manufactured products. Energistically
+              redefine.
+            </p>
+            <ul v-for="x in stepsList" :key="x">
+              <li>
+                <strong>{{ x.title }}:</strong> {{ x.desc }}
+              </li>
+            </ul>
+          </div>
+
+          <img
+            class="about-us__hero-girl-img"
+            src="../assets/about-us__girl.svg"
+            alt=""
+          />
+        </div>
       </div>
-      <img
-        class="about-us__hero-girl-img"
-        src="../assets/about-us__girl.svg"
-        alt=""
-      />
     </div>
   </div>
 </template>
@@ -69,14 +76,25 @@ export default {
 
 .about-us {
   &__hero {
-    padding: 80px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
 
-    @include tablet {
-      padding: 50px 40px 0 40px;
+    @include tabletAndDesktop {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    @include desktop {
-      padding: 50px 80px 0 80px;
+    &-wrapper {
+      margin: 80px 20px 0 20px;
+
+      @include tablet {
+        margin: 50px 40px 0 40px;
+      }
+
+      @include desktop {
+        margin: 50px 80px 0 80px;
+      }
     }
 
     span {
@@ -111,12 +129,17 @@ export default {
       list-style-image: url("../assets/checkmark-outline.svg");
       margin-bottom: 16px;
     }
-
     &-girl-img {
+      position: relative;
+      bottom: -20px;
       width: 100%;
 
-      @include tabletAndDesktop {
-        width: 602px;
+      @include tablet {
+        height: 500px;
+      }
+
+      @include desktop {
+        height: 700px;
       }
     }
   }
