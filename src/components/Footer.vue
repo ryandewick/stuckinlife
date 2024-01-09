@@ -55,19 +55,19 @@
   background-color: rgba(0, 26, 36, 0.9);
 
   &-wrapper {
-    margin-top: 300px;
-    z-index: 100;
+    margin-top: 120px;
 
     @include tabletAndDesktop {
-      margin-top: 140px;
+      margin-top: 110px;
     }
   }
 
   &__sign-up {
+    position: relative;
+    bottom: 120px;
     background-color: #0b5978;
     border-radius: 8px;
     padding: 50px 20px;
-    margin-top: -300px;
     text-align: center;
 
     @include tablet {
@@ -79,7 +79,7 @@
     }
 
     @include tabletAndDesktop {
-      margin-top: -140px;
+      bottom: 110px;
     }
 
     h3 {
@@ -173,7 +173,6 @@
     align-items: center;
     justify-content: center;
     filter: brightness(1000%);
-    padding-top: 100px;
     padding-bottom: 40px;
     border-bottom: 1px solid rgba(200, 200, 200, 0.3);
 
@@ -228,6 +227,7 @@
     color: white;
     font-weight: 300;
     background-color: rgba(0, 36, 50, 0.9);
+    padding: 20px 0;
   }
 }
 </style>

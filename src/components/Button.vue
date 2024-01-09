@@ -46,7 +46,8 @@ export default {
   &--primary {
     background: #0186ba;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: darken(#0186ba, 5%);
     }
   }
@@ -54,7 +55,8 @@ export default {
   &--secondary {
     background: #115e7c;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: darken(#115e7c, 5%);
     }
   }
