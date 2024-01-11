@@ -216,7 +216,11 @@ export default {
     color: white;
     background: linear-gradient(90deg, #197ba0 -5.41%, #054963 110.37%);
     span {
-      font-size: 2rem;
+      font-size: 1.6rem;
+
+      @include tabletAndDesktop {
+        font-size: 2rem;
+      }
     }
   }
 }
