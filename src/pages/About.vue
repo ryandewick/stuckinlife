@@ -209,8 +209,8 @@ export default {
   }
   .test {
     width: 100%;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     transform: rotate(-1.4deg);
     white-space: nowrap;
     color: white;
