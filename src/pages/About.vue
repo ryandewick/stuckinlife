@@ -26,12 +26,23 @@
               >Learn more</s-button
             >
           </div>
-
-          <img
-            class="about-us__hero-girl-img"
-            src="../assets/about-us__girl.svg"
-            alt="Description of the image"
-          />
+          <div class="about-us__hero-girl-wrapper">
+            <img
+              class="about-us__hero-girl-img"
+              src="../assets/about-us__girl.svg"
+              alt="Description of the image"
+            />
+            <img
+              class="about-us__hero-girl-wave"
+              src="../assets/wave-about-us.svg"
+              alt="wave"
+            />
+            <img
+              class="about-us__hero-girl-dots"
+              src="../assets/group-of-dots.svg"
+              alt="group of dots"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -87,10 +98,11 @@ export default {
   &__hero {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     @include tabletAndDesktop {
       flex-direction: row;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
     }
 
@@ -121,12 +133,21 @@ export default {
     }
 
     p {
+      display: block;
       color: $grey-color;
       font-size: 16px;
       font-style: normal;
       font-weight: 300;
       line-height: 160%;
       margin-bottom: 32px;
+
+      @include tablet {
+        display: none;
+      }
+
+      @include desktop {
+        display: block;
+      }
     }
 
     li {
@@ -138,18 +159,43 @@ export default {
       list-style-image: url("../assets/checkmark-outline.svg");
       margin-bottom: 16px;
     }
-    &-girl-img {
-      display: flex;
-      align-items: flex-end;
-      position: relative;
-      width: 100%;
+    &-girl {
+      &-wrapper {
+        position: relative;
+      }
+      &-img {
+        position: relative;
+        width: 100%;
+        bottom: -20px;
 
-      @include tablet {
-        height: 500px;
+        @include tabletAndDesktop {
+          width: 400px;
+          bottom: 0;
+        }
+      }
+      &-wave {
+        position: absolute;
+        top: 20px;
+        right: 130px;
+        width: 47px;
+
+        @include tabletAndDesktop {
+          top: 120px;
+          right: 0;
+          width: 100px;
+        }
       }
 
-      @include desktop {
-        height: 600px;
+      &-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        z-index: -1;
+
+        @include tabletAndDesktop {
+          left: -40px;
+          bottom: -40px;
+        }
       }
     }
     &-button {
