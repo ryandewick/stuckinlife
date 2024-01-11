@@ -3,13 +3,13 @@
     <div class="about-us__hero-wrapper">
       <div class="container">
         <div class="about-us__hero">
-          <div>
-            <span>About us</span>
-            <h1>
+          <div class="about-us__hero-content">
+            <span class="about-us__hero-title">About us</span>
+            <h1 class="about-us__hero-heading">
               Unlock Your Career Potential: 6 Powerful Strategies You Can't
               Ignore
             </h1>
-            <p>
+            <p class="about-us__hero-description">
               Professionally envisioneer user-centric core competencies
               vis-a-vis real-time niches. Compellingly fashion
               principle-centered e-commerce for magnetic methods of empowerment.
@@ -17,25 +17,38 @@
               low-risk high-yield manufactured products. Energistically
               redefine.
             </p>
-            <ul v-for="x in stepsList" :key="x">
-              <li>
+            <ul class="about-us__hero-list" v-for="x in stepsList" :key="x">
+              <li class="about-us__hero-item">
                 <strong>{{ x.title }}:</strong> {{ x.desc }}
               </li>
             </ul>
+            <s-button class="about-us__hero-button" variant="secondary"
+              >Learn more</s-button
+            >
           </div>
 
           <img
             class="about-us__hero-girl-img"
             src="../assets/about-us__girl.svg"
-            alt=""
+            alt="Description of the image"
           />
         </div>
       </div>
+    </div>
+    <div class="test">
+      <Vue3Marquee>
+        <span>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint sed in,
+          animi tempora ad
+        </span>
+      </Vue3Marquee>
     </div>
   </div>
 </template>
 
 <script>
+import { Vue3Marquee } from "vue3-marquee";
+import sButton from "@/components/Button.vue";
 export default {
   data() {
     return {
@@ -43,10 +56,6 @@ export default {
         {
           title: "Set clear goals",
           desc: "Know what you want to achieve",
-        },
-        {
-          title: "Develop a growth mindset",
-          desc: "Keep an open mind",
         },
         {
           title: "Cultivate a strong professional network",
@@ -60,12 +69,12 @@ export default {
           title: "Find a mentor",
           desc: "Build relationships with more experienced professionals",
         },
-        {
-          title: "Get involved in your industry",
-          desc: "Attend industry conferences",
-        },
       ],
     };
+  },
+  components: {
+    sButton,
+    Vue3Marquee,
   },
 };
 </script>
@@ -130,8 +139,9 @@ export default {
       margin-bottom: 16px;
     }
     &-girl-img {
+      display: flex;
+      align-items: flex-end;
       position: relative;
-      bottom: -20px;
       width: 100%;
 
       @include tablet {
@@ -139,8 +149,28 @@ export default {
       }
 
       @include desktop {
-        height: 700px;
+        height: 600px;
       }
+    }
+    &-button {
+      margin-top: 32px;
+      margin-bottom: 46px;
+    }
+  }
+
+  .marquee {
+    transform: rotate(-1.6deg);
+  }
+  .test {
+    width: 100%;
+    padding-top: 16px;
+    transform: rotate(-1.4deg);
+    padding-bottom: 16px;
+    white-space: nowrap;
+    color: white;
+    background: linear-gradient(90deg, #197ba0 -5.41%, #054963 110.37%);
+    span {
+      font-size: 2rem;
     }
   }
 }
