@@ -209,14 +209,19 @@ export default {
   }
   .test {
     width: 100%;
-    padding-top: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     transform: rotate(-1.4deg);
-    padding-bottom: 16px;
     white-space: nowrap;
     color: white;
     background: linear-gradient(90deg, #197ba0 -5.41%, #054963 110.37%);
+
+    @include tabletAndDesktop {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
     span {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
 
       @include tabletAndDesktop {
         font-size: 2rem;
