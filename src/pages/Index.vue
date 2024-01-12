@@ -21,7 +21,7 @@
             />
             <img
               class="index__hero-woman"
-              src="../assets/woman-hero.png"
+              src="../assets/woman-hero.webp"
               alt="a woman looking proud"
             />
           </div>
@@ -97,7 +97,7 @@
             </div>
             <img
               class="index__what-is-stuckinlife__img"
-              src="../assets/man-holding.svg"
+              src="../assets/man-holding.webp"
               alt="a man holding something he has made"
             />
           </div>
