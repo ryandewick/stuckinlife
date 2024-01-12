@@ -6,7 +6,7 @@
           <div class="about-us__hero-content">
             <span class="about-us__hero-title">About us</span>
             <h1 class="about-us__hero-heading">
-              Unlock Your Career Potential: 6 Powerful Strategies You Can't
+              Unlock Your Career Potential: 4 Powerful Strategies You Can't
               Ignore
             </h1>
             <p class="about-us__hero-description">
@@ -54,12 +54,19 @@
         </span>
       </Vue3Marquee>
     </div>
+    <div class="about-us__faq">
+      <div class="about-us__faq-wrapper">
+        <h2>Frequently Asked Questions</h2>
+        <s-accordion />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { Vue3Marquee } from "vue3-marquee";
 import sButton from "@/components/Button.vue";
+import sAccordion from "@/components/Accordion.vue";
 export default {
   data() {
     return {
@@ -85,6 +92,7 @@ export default {
   },
   components: {
     sButton,
+    sAccordion,
     Vue3Marquee,
   },
 };
@@ -221,6 +229,25 @@ export default {
 
       @include tabletAndDesktop {
         font-size: 2rem;
+      }
+    }
+  }
+
+  &__faq {
+    &-wrapper {
+      padding-top: 80px;
+      padding-bottom: 80px;
+
+      h2 {
+        font-size: 3.2rem;
+        color: #222222;
+        text-align: center;
+        margin-bottom: 16px;
+
+        @include tabletAndDesktop {
+          font-size: 3.2rem;
+          margin-bottom: 32px;
+        }
       }
     }
   }
