@@ -29,7 +29,7 @@
           <div class="about-us__hero-girl-wrapper">
             <img
               class="about-us__hero-girl-img"
-              src="../assets/about-us__girl.svg"
+              src="../assets/about-us__girl.webp"
               alt="Description of the image"
             />
             <img
