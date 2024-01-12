@@ -143,7 +143,7 @@ export default {
     p {
       display: block;
       color: $grey-color;
-      font-size: 16px;
+      font-size: 1.6rem;
       font-style: normal;
       font-weight: 300;
       line-height: 160%;
@@ -160,7 +160,7 @@ export default {
 
     li {
       color: $secondary-color;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-style: normal;
       font-weight: 400;
       line-height: 160%;
