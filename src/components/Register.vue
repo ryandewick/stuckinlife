@@ -227,6 +227,7 @@ export default {
 .register {
   h4 {
     font-weight: 400;
+    margin-top: 40px;
     margin-bottom: 24px;
   }
 

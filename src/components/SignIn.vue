@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in">
-    <h4>Sign In</h4>
+    <h4>Log in your account</h4>
     <form @submit.prevent="signIn">
       <s-input
         class="sign-in__email"
@@ -22,11 +22,14 @@
       <div class="sign-in__buttons">
         <s-button
           class="sign-in__button-cancel"
-          text="Cancel"
           @click="toggleSidebar"
           variant="secondary"
-        />
-        <s-button class="sign-in__button-login" text="Login" @click="signIn" />
+        >
+          Cancel
+        </s-button>
+        <s-button variant="accent" class="sign-in__button-login" @click="signIn"
+          >Login</s-button
+        >
       </div>
     </form>
   </div>
@@ -82,19 +85,23 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .sign-in {
+  position: relative;
+  z-index: 2;
   h4 {
     color: $dark-color;
     font-weight: 400;
+    margin-top: 40px;
     margin-bottom: 24px;
   }
 
   &__email {
-    margin-bottom: 12px;
+    margin-bottom: 32px;
   }
 
   &__buttons {
     display: flex;
-    gap: 4px;
+    flex-direction: column-reverse;
+    gap: 16px;
     z-index: 2;
     margin-top: 40px;
   }

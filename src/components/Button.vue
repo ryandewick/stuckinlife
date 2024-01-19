@@ -5,6 +5,8 @@
       {
         'button--primary': variant === 'primary',
         'button--secondary': variant === 'secondary',
+        'button--accent': variant === 'accent',
+        'button--outline': variant === 'outline',
       },
     ]"
   >
@@ -18,7 +20,8 @@ export default {
     variant: {
       type: String,
       required: true,
-      validator: (value) => ["primary", "secondary"].includes(value),
+      validator: (value) =>
+        ["primary", "secondary", "accent", "outline"].includes(value),
     },
   },
 };
@@ -58,6 +61,15 @@ export default {
     &:hover,
     &:focus {
       background-color: darken(#115e7c, 5%);
+    }
+  }
+
+  &--accent {
+    background-color: $accent-color;
+
+    &:hover,
+    &:focus {
+      background-color: darken($accent-color, 5%);
     }
   }
 }

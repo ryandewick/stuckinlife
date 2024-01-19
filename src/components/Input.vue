@@ -123,24 +123,25 @@ export default {
 .s-input {
   position: relative;
   &__label {
-    font-size: 16px;
+    font-size: 1.6rem;
+    color: #222;
   }
 
   &__input {
-    background: #fff;
-    padding: 10px 14px;
+    background: #edf2f3;
+    padding: 16px 20px;
     width: 100%;
     font-size: 16px;
     border: 1px solid #ededed;
     color: #9ea5ad;
-    margin-top: 8px;
+    margin-top: 4px;
 
     &:focus,
     &:active,
     &:hover {
       outline: none;
       color: $dark-color;
-      border-color: $dark-color;
+      border-color: darken(#edf2f3, 10%);
     }
   }
 }

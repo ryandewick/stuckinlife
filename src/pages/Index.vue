@@ -6,7 +6,9 @@
           <div class="index__hero-left">
             <h1>Unlock your career potential</h1>
             <p>Let’s find the perfect course for you!</p>
-            <s-button variant="primary">Get Started for FREE</s-button>
+            <s-button class="index__hero-left-cta" variant="primary"
+              >Get Started for FREE</s-button
+            >
           </div>
           <img
             class="index__hero-logo"
@@ -288,15 +290,24 @@ export default {
       text-align: left;
     }
 
+    &-left {
+      &-cta {
+        position: relative;
+        z-index: 2;
+      }
+    }
+
     &-logo,
     &-arrow {
       position: absolute;
+      z-index: 1;
     }
 
     &-logo {
       top: 0;
       left: 0;
       height: 325px;
+      z-index: 1;
 
       @include tablet {
         top: 50px;

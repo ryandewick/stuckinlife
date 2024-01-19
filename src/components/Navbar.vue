@@ -3,19 +3,24 @@
     <div class="container">
       <div class="navbar">
         <div class="navbar__brand">
-          <img
-            class="navbar__brand-logo"
-            src="../assets/stuckinlife.webp"
-            alt=""
-          />
-          <a v-if="!user" class="navbar__brand-name" href="/"
-            >StuckIn<strong>Life</strong></a
-          >
-          <a v-if="user" class="navbar__brand-name" href="/courses"
-            >StuckIn<strong>Life</strong></a
-          >
+          <a v-if="!user" class="navbar__brand-name" href="/">
+            <img
+              class="navbar__brand-logo"
+              src="../assets/stuckinlife.webp"
+              alt=""
+            />
+            StuckIn<strong>Life</strong>
+          </a>
+          <a v-if="user" class="navbar__brand-name" href="/courses">
+            <img
+              class="navbar__brand-logo"
+              src="../assets/stuckinlife.webp"
+              alt=""
+            />
+            StuckIn<strong>Life</strong>
+          </a>
         </div>
-        <button
+        <!-- <button
           @click="toggleMobileMenu"
           class="navbar__toggle"
           v-show="isMobile"
@@ -23,7 +28,7 @@
           <span></span>
           <span></span>
           <span></span>
-        </button>
+        </button> -->
         <div
           class="navbar__links"
           :class="{ 'navbar__links--active': isMenuOpen }"
@@ -37,7 +42,12 @@
             {{ item.name }}
           </router-link>
         </div>
-        <div class="navbar__button-wrapper"></div>
+        <div class="navbar__cta">
+          <button class="navbar__cta-register">Register</button>
+          <button class="navbar__cta-login" @click="toggleSidebar">
+            Login
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -52,12 +62,16 @@ export default {
     return {
       navLinks: [
         {
-          name: "About Us",
+          name: "Home",
+          url: "/",
+        },
+        {
+          name: "About us",
           url: "/about-us",
         },
         {
-          name: "Blog",
-          url: "/blog",
+          name: "Courses",
+          url: "/courses",
         },
         // ... add more links as needed
       ],
@@ -130,10 +144,6 @@ nav {
     padding: 10px;
 
     &__brand {
-      display: flex;
-      align-items: center;
-      width: 100%;
-
       &-logo {
         width: 40px;
         filter: brightness(1000%);
@@ -141,6 +151,9 @@ nav {
       }
 
       &-name {
+        display: flex;
+        align-items: center;
+        width: 100%;
         font-size: 18px;
         font-weight: 300;
         color: #f3f3f3;
@@ -166,7 +179,7 @@ nav {
     &__links {
       display: none;
       flex-direction: column;
-      width: 100%;
+      // width: 100%;
       align-items: center;
 
       &--active {
@@ -216,6 +229,35 @@ nav {
 
       &__brand-name {
         font-size: 20px;
+      }
+    }
+    &__cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      &-register {
+        text-decoration: underline;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-weight: 300;
+        font-size: 1.6rem;
+        cursor: pointer;
+      }
+
+      &-login {
+        padding: 12px 32px;
+        color: #fff;
+        background-color: $accent-color;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.6rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
       }
     }
   }

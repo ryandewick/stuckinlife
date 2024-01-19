@@ -12,7 +12,7 @@
           {{ tab.name }}
         </li>
       </ul>
-      <div class="container">
+      <div class="sidebar__container">
         <sign-in v-if="tabOpen === 'Sign In'" />
         <register v-if="tabOpen === 'Register'" />
       </div>
@@ -97,7 +97,7 @@ export default {
 }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -105,6 +105,9 @@ export default {
   overflow: hidden;
   background-color: #f3f3f3;
   border-left: 1px solid $primary-color;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  z-index: 2000;
 
   @include tabletAndDesktop {
     width: 400px;
@@ -133,12 +136,8 @@ export default {
 
     &:hover {
       color: $primary-color;
-      background-color: $light-color;
+      background-color: #f3f3f3;
     }
-  }
-
-  img {
-    z-index: 1;
   }
 
   &__stuck-logo {
@@ -146,6 +145,10 @@ export default {
     bottom: 0;
     right: 0;
     filter: brightness(-100%);
+  }
+
+  &__container {
+    padding-inline: 40px;
   }
 }
 
