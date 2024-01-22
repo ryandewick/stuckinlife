@@ -24,6 +24,10 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 
+.contact-us {
+  z-index: 9;
+}
+
 button {
   cursor: pointer;
   color: white;

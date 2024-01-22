@@ -40,7 +40,7 @@ export default {
 @import "@/assets/mixins/_breakpoints.scss";
 
 .contact-us {
-  z-index: 100;
+  // z-index: 100;
   position: fixed;
   top: 70%;
   right: -60px;

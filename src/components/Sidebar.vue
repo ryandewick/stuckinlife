@@ -1,26 +1,28 @@
 <template>
   <transition name="slide">
-    <div v-if="sidebarOpen" class="sidebar">
-      <ul class="sidebar__tabs">
-        <li
-          v-for="tab in tabs"
-          :key="tab"
-          class="sidebar__tab"
-          :class="{ 'sidebar__tab--active': tabOpen === tab.name }"
-          @click="handleTabClick(tab)"
-        >
-          {{ tab.name }}
-        </li>
-      </ul>
-      <div class="sidebar__container">
-        <sign-in v-if="tabOpen === 'Sign In'" />
-        <register v-if="tabOpen === 'Register'" />
+    <div v-if="sidebarOpen" class="overlay">
+      <div v-if="sidebarOpen" class="sidebar">
+        <ul class="sidebar__tabs">
+          <li
+            v-for="tab in tabs"
+            :key="tab"
+            class="sidebar__tab"
+            :class="{ 'sidebar__tab--active': tabOpen === tab.name }"
+            @click="handleTabClick(tab)"
+          >
+            {{ tab.name }}
+          </li>
+        </ul>
+        <div class="sidebar__container">
+          <sign-in v-if="tabOpen === 'Sign In'" />
+          <register v-if="tabOpen === 'Register'" />
+        </div>
+        <img
+          class="sidebar__stuck-logo"
+          src="@/assets/transparent-logo.svg"
+          alt="stuckinlife logo"
+        />
       </div>
-      <img
-        class="sidebar__stuck-logo"
-        src="@/assets/transparent-logo.svg"
-        alt="stuckinlife logo"
-      />
     </div>
   </transition>
 </template>
@@ -88,12 +90,13 @@ export default {
 @import "@/assets/mixins/_breakpoints.scss";
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: rgba(51, 51, 51, 0.5);
+  z-index: 10;
 }
 
 .sidebar {

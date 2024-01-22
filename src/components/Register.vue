@@ -28,11 +28,12 @@
       <div class="register__buttons">
         <s-button
           class="register__button-cancel"
-          text="Cancel"
           @click="toggleSidebar"
           variant="secondary"
-        />
-        <s-button text="Continue" @click="checkForValidEmail" />
+        >
+          Cancel
+        </s-button>
+        <s-button @click="checkForValidEmail">Continue</s-button>
       </div>
     </div>
 
@@ -70,11 +71,12 @@
       <div class="register__buttons">
         <s-button
           class="register__button-cancel"
-          text="Cancel"
           @click="toggleSidebar"
           variant="secondary"
-        />
-        <s-button text="Continue" @click="nextStep" />
+        >
+          Cancel
+        </s-button>
+        <s-button @click="nextStep">Continue</s-button>
       </div>
     </div>
 
@@ -99,12 +101,12 @@
       <div class="register__buttons">
         <s-button
           class="register__button-cancel"
-          text="Cancel"
           @click="toggleSidebar"
           variant="secondary"
-        />
+          >Cancel</s-button
+        >
 
-        <s-button text="Sign up" @click="signUp" />
+        <s-button @click="signUp">Sign up</s-button>
       </div>
     </div>
   </div>
@@ -256,6 +258,7 @@ export default {
   }
 
   &__buttons {
+    position: relative;
     display: flex;
     gap: 4px;
     z-index: 2;

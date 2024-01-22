@@ -42,11 +42,17 @@
             {{ item.name }}
           </router-link>
         </div>
-        <div class="navbar__cta">
+        <div v-if="!user" class="navbar__cta">
           <button class="navbar__cta-register">Register</button>
           <button class="navbar__cta-login" @click="toggleSidebar">
             Login
           </button>
+        </div>
+        <div v-if="user" class="navbar__cta">
+          <button class="navbar__cta-register" @click="goToProfile">
+            {{ greetingsMessage }}
+          </button>
+          <button class="navbar__cta-login" @click="logout">Logout</button>
         </div>
       </div>
     </div>
@@ -111,6 +117,7 @@ export default {
   methods: {
     ...mapActions(useAuthStore, {
       toggleSidebar: "toggleSidebar",
+      signOut: "signOut",
     }),
 
     handleResize() {
@@ -124,7 +131,10 @@ export default {
     goToProfile() {
       this.$router.push("/profile");
     },
-    // ... any additional methods
+    logout() {
+      this.signOut();
+      this.$router.push("/");
+    },
   },
 };
 </script>
