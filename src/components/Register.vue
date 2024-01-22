@@ -27,13 +27,15 @@
       <p v-if="authError" class="error">{{ authError }}</p>
       <div class="register__buttons">
         <s-button
+          variant="outline"
           class="register__button-cancel"
           @click="toggleSidebar"
-          variant="secondary"
         >
           Cancel
         </s-button>
-        <s-button @click="checkForValidEmail">Continue</s-button>
+        <s-button variant="secondary" @click="checkForValidEmail"
+          >Continue</s-button
+        >
       </div>
     </div>
 
@@ -72,11 +74,11 @@
         <s-button
           class="register__button-cancel"
           @click="toggleSidebar"
-          variant="secondary"
+          variant="outline"
         >
           Cancel
         </s-button>
-        <s-button @click="nextStep">Continue</s-button>
+        <s-button variant="secondary" @click="nextStep">Continue</s-button>
       </div>
     </div>
 
@@ -102,11 +104,11 @@
         <s-button
           class="register__button-cancel"
           @click="toggleSidebar"
-          variant="secondary"
+          variant="outline"
           >Cancel</s-button
         >
 
-        <s-button @click="signUp">Sign up</s-button>
+        <s-button variant="secondary" @click="signUp">Sign up</s-button>
       </div>
     </div>
   </div>
@@ -260,6 +262,7 @@ export default {
   &__buttons {
     position: relative;
     display: flex;
+    flex-direction: column-reverse;
     gap: 4px;
     z-index: 2;
     margin-top: 40px;

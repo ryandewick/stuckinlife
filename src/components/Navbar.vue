@@ -204,7 +204,7 @@ nav {
       text-decoration: none;
 
       &:hover {
-        color: $secondary-color;
+        text-decoration: underline;
       }
     }
 

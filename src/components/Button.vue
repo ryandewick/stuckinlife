@@ -72,5 +72,16 @@ export default {
       background-color: darken($accent-color, 5%);
     }
   }
+
+  &--outline {
+    background-color: rgba(17, 94, 124, 0.1);
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+
+    &:hover,
+    &:focus {
+      background-color: darken(rgba(17, 94, 124, 0.2), 5%);
+    }
+  }
 }
 </style>

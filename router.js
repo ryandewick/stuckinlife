@@ -5,7 +5,6 @@ import Index from "@/pages/Index.vue";
 import Courses from "@/pages/Courses.vue";
 import About from "@/pages/About.vue";
 import AdminDashboard from "@/dashboard/index.vue";
-// import FAQ from "@/pages/FAQ.vue";
 
 import { useAuthStore } from "@/stores/authStore";
 
@@ -27,10 +26,6 @@ const routes = [
     path: "/admin",
     component: AdminDashboard,
   },
-  // {
-  //   path: "/faq",
-  //   component: FAQ,
-  // },
 ];
 
 const router = createRouter({
