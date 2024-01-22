@@ -48,7 +48,7 @@
             Login
           </button>
         </div>
-        <div v-if="user" class="navbar__cta">
+        <div v-else class="navbar__cta">
           <button class="navbar__cta-register" @click="goToProfile">
             {{ greetingsMessage }}
           </button>
