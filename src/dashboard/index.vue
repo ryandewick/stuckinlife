@@ -33,6 +33,13 @@
       </div>
       <div v-if="activeTab === 'blogs'" class="dashboard__blogs">
         <h3>Blogs</h3>
+        <div class="dashboard__blogs--cards">
+          <blog-control-card
+            v-for="blog in blogs"
+            :key="blog.id"
+            :blog="blog"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -40,9 +47,11 @@
 
 <script>
 import { useDashboardStore } from "@/stores/dashboard";
+import { useBlogsStore } from "@/stores/blogs";
 import { mapActions, mapState } from "pinia";
 
 import sMenu from "@/components/dashboard/Menu.vue";
+import BlogControlCard from "./blogs/BlogControlCard.vue";
 
 export default {
   data() {
@@ -64,6 +73,7 @@ export default {
   },
   components: {
     sMenu,
+    BlogControlCard,
   },
   methods: {
     ...mapActions(useDashboardStore, {
@@ -87,6 +97,7 @@ export default {
   },
   computed: {
     ...mapState(useDashboardStore, ["allUsers"]),
+    ...mapState(useBlogsStore, ["blogs"]),
   },
   mounted() {
     this.loadUsers();

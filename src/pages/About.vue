@@ -48,10 +48,7 @@
     </div>
     <div class="test">
       <Vue3Marquee>
-        <span>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint sed in,
-          animi tempora ad
-        </span>
+        <span> Follow us on social media! @stuckinlife </span>
       </Vue3Marquee>
     </div>
     <div class="about-us__faq">
