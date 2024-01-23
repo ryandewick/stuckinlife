@@ -6,7 +6,10 @@
           <div class="index__hero-left">
             <h1>Unlock your career potential</h1>
             <p>Let’s find the perfect course for you!</p>
-            <s-button class="index__hero-left-cta" variant="primary"
+            <s-button
+              @click="handleRegisterClick"
+              class="index__hero-left-cta"
+              variant="primary"
               >Get Started for FREE</s-button
             >
           </div>
@@ -124,7 +127,9 @@
               career planning becomes not just a necessity, but a thrilling
               adventure!
             </p>
-            <s-button variant="secondary">Learn More</s-button>
+            <s-button @click="handleGoToAboutUs" variant="secondary"
+              >Learn More</s-button
+            >
           </div>
         </div>
       </div>
@@ -251,10 +256,21 @@ export default {
     ...mapActions(useAuthStore, {
       handleSignOut: "signOut",
       toggleSidebar: "toggleSidebar",
+      setTabOpen: "setTabOpen",
     }),
 
     updateIsMobile() {
       this.isMobile = window.innerWidth < 768;
+    },
+
+    handleRegisterClick() {
+      this.toggleSidebar();
+      this.setTabOpen("Register");
+    },
+
+    handleGoToAboutUs() {
+      // window.location.href = "/about-us";
+      this.$router.push("/about-us");
     },
   },
 

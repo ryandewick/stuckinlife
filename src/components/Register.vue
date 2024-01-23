@@ -177,8 +177,6 @@ export default {
     },
 
     async checkForValidEmail() {
-      console.log("Method called");
-
       const emailExists = await this.checkEmailExists(this.email);
       if (emailExists) {
         return;
@@ -263,7 +261,7 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column-reverse;
-    gap: 4px;
+    gap: 16px;
     z-index: 2;
     margin-top: 40px;
   }

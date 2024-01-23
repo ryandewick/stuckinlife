@@ -95,6 +95,10 @@ export default {
     sAccordion,
     Vue3Marquee,
   },
+
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 

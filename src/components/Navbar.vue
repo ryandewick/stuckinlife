@@ -43,8 +43,10 @@
           </router-link>
         </div>
         <div v-if="!user" class="navbar__cta">
-          <button class="navbar__cta-register">Register</button>
-          <button class="navbar__cta-login" @click="toggleSidebar">
+          <button class="navbar__cta-register" @click="handleRegisterClick">
+            Register
+          </button>
+          <button class="navbar__cta-login" @click="handleLoginClick">
             Login
           </button>
         </div>
@@ -118,6 +120,7 @@ export default {
     ...mapActions(useAuthStore, {
       toggleSidebar: "toggleSidebar",
       signOut: "signOut",
+      setTabOpen: "setTabOpen",
     }),
 
     handleResize() {
@@ -126,6 +129,16 @@ export default {
 
     toggleMobileMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+
+    handleRegisterClick() {
+      this.toggleSidebar();
+      this.setTabOpen("Register");
+    },
+
+    handleLoginClick() {
+      this.toggleSidebar();
+      this.setTabOpen("Sign In");
     },
 
     goToProfile() {

@@ -6,8 +6,10 @@
           <li
             v-for="tab in tabs"
             :key="tab"
-            class="sidebar__tab"
-            :class="{ 'sidebar__tab--active': tabOpen === tab.name }"
+            :class="[
+              'sidebar__tab',
+              { 'sidebar__tab--active': tabOpen === tab.name },
+            ]"
             @click="handleTabClick(tab)"
           >
             {{ tab.name }}
@@ -50,21 +52,26 @@ export default {
           component: Register,
         },
       ],
-      tabOpen: "Sign In",
     };
   },
 
   computed: {
-    ...mapState(useAuthStore, ["user", "userProfile", "sidebarOpen"]),
+    ...mapState(useAuthStore, [
+      "user",
+      "userProfile",
+      "sidebarOpen",
+      "tabOpen",
+    ]),
   },
 
   methods: {
     ...mapActions(useAuthStore, {
       toggleSidebar: "toggleSidebar",
+      setTabOpen: "setTabOpen",
     }),
 
     handleTabClick(tab) {
-      this.tabOpen = tab.name;
+      this.setTabOpen(tab.name);
     },
 
     handleOutsideClick(event) {

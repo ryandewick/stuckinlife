@@ -17,6 +17,7 @@ export const useAuthStore = defineStore({
       authError: null,
       userProfile: null,
       sidebarOpen: false,
+      tabOpen: "Sign In",
     };
   },
 
@@ -135,6 +136,9 @@ export const useAuthStore = defineStore({
     },
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
+    },
+    setTabOpen(tabName) {
+      this.tabOpen = tabName;
     },
   },
 });
