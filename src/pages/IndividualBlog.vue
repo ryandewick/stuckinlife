@@ -2,7 +2,11 @@
   <div class="container">
     <div v-if="blogData" class="blog">
       <div class="blog__image-container">
-        <img :src="blogData.image" alt="Blog Image" class="blog__image" />
+        <img
+          :src="blogData.image"
+          :alt="`Image of ${blogData.title}`"
+          class="blog__image"
+        />
         <div class="blog__title-container">
           <h2 class="blog__title">{{ blogData.title }}</h2>
         </div>
