@@ -2,7 +2,7 @@
   <div class="blog-control-card__wrapper">
     <div class="blog-control-card">
       <div class="blog-control-card__image">
-        <img src="../../../assets/test-blog-image1.svg" :alt="blog?.altTag" />
+        <img :src="blog?.image" :alt="blog?.altTag" />
       </div>
       <div class="blog-control-card__content">
         <div class="blog-control-card__content-title">{{ blog?.title }}</div>
