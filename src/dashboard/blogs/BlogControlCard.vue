@@ -2,22 +2,23 @@
   <div class="blog-control-card__wrapper">
     <div class="blog-control-card">
       <div class="blog-control-card__image">
-        <img
-          src="../../../public/assets/test-blog-image1.svg"
-          :alt="blog?.altTag"
-        />
+        <img src="../../../assets/test-blog-image1.svg" :alt="blog?.altTag" />
       </div>
       <div class="blog-control-card__content">
         <div class="blog-control-card__content-title">{{ blog?.title }}</div>
         <div class="blog-control-card__content-description">
-          {{ blog?.description }}
+          {{ capLength(blog?.description, 200) }}
         </div>
-        <s-button class="blog-control-card__content-edit" variant="accent"
-          >Edit</s-button
+        <s-button class="blog-control-card__content-edit" variant="accent">
+          Edit
+        </s-button>
+        <s-button
+          class="blog-control-card__content-remove"
+          variant="primary"
+          @click="deleteBlog(blog.id)"
         >
-        <s-button class="blog-control-card__content-remove" variant="primary"
-          >Remove</s-button
-        >
+          Remove
+        </s-button>
       </div>
     </div>
   </div>
@@ -25,6 +26,10 @@
 
 <script>
 import sButton from "@/components/Button.vue";
+import { capLength } from "@/../helper";
+
+import { useBlogsStore } from "@/stores/blogs";
+import { mapActions } from "pinia";
 export default {
   props: {
     blog: {
@@ -34,6 +39,22 @@ export default {
   components: {
     sButton,
   },
+
+  methods: {
+    ...mapActions(useBlogsStore, {
+      deleteBlog: "deleteBlog",
+    }),
+    capLength,
+  },
+
+  // methods: {
+  //   capLength(info, maxLength) {
+  //     if (info && info.length > maxLength) {
+  //       return info.slice(0, maxLength) + "...";
+  //     }
+  //     return info;
+  //   },
+  // },
 };
 </script>
 

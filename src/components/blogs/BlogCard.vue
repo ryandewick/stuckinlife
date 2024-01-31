@@ -6,7 +6,7 @@
     <div class="blog-card__content">
       <div class="blog-card__title">{{ blog?.title }}</div>
       <div class="blog-card__description">
-        {{ blog?.description }}
+        {{ capLength(blog?.description, 50) }}
       </div>
       <div class="blog-card__read-more">
         <a href="/">Read more ></a>
@@ -16,11 +16,15 @@
 </template>
 
 <script>
+import { capLength } from "@/../helper";
 export default {
   props: {
     blog: {
       type: Object,
     },
+  },
+  methods: {
+    capLength,
   },
 };
 </script>

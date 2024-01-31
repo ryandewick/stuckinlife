@@ -151,6 +151,7 @@
 
 <script>
 import { useAuthStore } from "@/stores/authStore";
+import { useBlogsStore } from "@/stores/blogs";
 import { mapState, mapActions } from "pinia";
 
 import sButton from "@/components/Button.vue";
@@ -165,62 +166,6 @@ export default {
 
   data() {
     return {
-      blogs: [
-        {
-          id: 1,
-          title: "Career Exploration Essentials: Discover Your Path to Success",
-          author: "Ryan Dewick",
-          date: new Date().toLocaleDateString(),
-          image: "/assets/test-blog-image.svg",
-          description:
-            "Continually restore premier e-business via prospective results.",
-        },
-        {
-          id: 1,
-          title: "Career Exploration Essentials: Discover Your Path to Success",
-          author: "Ryan Dewick",
-          date: new Date().toLocaleDateString(),
-          image: "/assets/test-blog-image1.svg",
-          description:
-            "Continually restore premier e-business via prospective results.",
-        },
-        {
-          id: 2,
-          title: "Career Exploration Essentials: Discover Your Path to Success",
-          author: "Ryan Dewick",
-          date: new Date().toLocaleDateString(),
-          image: "/assets/test-blog-image2.svg",
-          description:
-            "Continually restore premier e-business via prospective results.",
-        },
-        {
-          id: 1,
-          title: "Career Exploration Essentials: Discover Your Path to Success",
-          author: "Ryan Dewick",
-          date: new Date().toLocaleDateString(),
-          image: "/assets/test-blog-image3.svg",
-          description:
-            "Continually restore premier e-business via prospective results.",
-        },
-        {
-          id: 2,
-          title: "Career Exploration Essentials: Discover Your Path to Success",
-          author: "Ryan Dewick",
-          date: new Date().toLocaleDateString(),
-          image: "/assets/test-blog-image2.svg",
-          description:
-            "Continually restore premier e-business via prospective results.",
-        },
-        {
-          id: 1,
-          title: "Career Exploration Essentials: Discover Your Path to Success",
-          author: "Ryan Dewick",
-          date: new Date().toLocaleDateString(),
-          image: "/assets/test-blog-image3.svg",
-          description:
-            "Continually restore premier e-business via prospective results.",
-        },
-      ],
       isMobile: window.innerWidth < 768,
       stepsInfo: [
         {
@@ -250,6 +195,7 @@ export default {
 
   computed: {
     ...mapState(useAuthStore, ["user", "userProfile", "sidebarOpen"]),
+    ...mapState(useBlogsStore, ["blogs"]),
   },
 
   methods: {

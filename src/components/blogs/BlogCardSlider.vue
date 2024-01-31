@@ -1,6 +1,6 @@
 <template>
   <div class="blog-card-slider">
-    <div class="slider-container" ref="sliderContainer">
+    <div class="blog-card-slider__container" ref="sliderContainer">
       <div
         class="blog-card-slider__cards"
         v-for="blog in blogs"
@@ -36,21 +36,31 @@ export default {
   data() {
     return {
       currentSlide: 0,
+      isMobile: window.innerWidth < 768,
     };
   },
   computed: {
     sliderStyle() {
+      const gap = 8;
       return {
-        transform: `translateX(-${this.currentSlide * 100}%)`,
+        transform: `translateX(calc(-${this.currentSlide * 100}% - ${
+          this.currentSlide * gap
+        }px))`,
       };
     },
   },
+
   methods: {
     nextSlide() {
-      if (this.currentSlide < this.blogs.length - 1) {
+      if (!this.isMobile && this.currentSlide < this.blogs.length - 4) {
         this.currentSlide++;
+      } else if (this.isMobile && this.currentSlide < this.blogs.length - 1.2) {
+        this.currentSlide++;
+      } else {
+        this.currentSlide = 0;
       }
     },
+
     prevSlide() {
       if (this.currentSlide > 0) {
         this.currentSlide--;
@@ -60,6 +70,18 @@ export default {
       console.log("swipe");
     },
   },
+
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.isMobile = window.innerWidth < 768;
+    });
+  },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", () => {
+      this.isMobile = window.innerWidth < 768;
+    });
+  },
 };
 </script>
 
@@ -68,14 +90,14 @@ export default {
 @import "@/assets/mixins/_breakpoints.scss";
 .blog-card-slider {
   position: relative;
-  .slider-container {
+  &__container {
     overflow: hidden;
     display: flex;
-    align-items: flex-start;
+    // align-items: flex-start;
     gap: 8px;
   }
 
-  .blog-card-slider__cards {
+  &__cards {
     transition: transform 0.3s ease-in-out;
     width: 100%;
   }
