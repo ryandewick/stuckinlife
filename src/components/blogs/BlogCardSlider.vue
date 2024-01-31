@@ -93,13 +93,11 @@ export default {
   &__container {
     overflow: hidden;
     display: flex;
-    // align-items: flex-start;
     gap: 8px;
   }
 
   &__cards {
     transition: transform 0.3s ease-in-out;
-    width: 100%;
   }
 
   &__buttons {
