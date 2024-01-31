@@ -9,7 +9,7 @@
         {{ capLength(blog?.description, 50) }}
       </div>
       <div class="blog-card__read-more">
-        <a href="/">Read more ></a>
+        <a :href="`/blogs/${blog.id}`">Read more ></a>
       </div>
     </div>
   </div>

@@ -5,7 +5,12 @@
         <img :src="blog?.image" :alt="blog?.altTag" />
       </div>
       <div class="blog-control-card__content">
-        <div class="blog-control-card__content-title">{{ blog?.title }}</div>
+        <div
+          class="blog-control-card__content-title"
+          @click="this.$router.push(`/blogs/${blog.id}`)"
+        >
+          {{ blog?.title }}
+        </div>
         <div class="blog-control-card__content-description">
           {{ capLength(blog?.description, 200) }}
         </div>
@@ -89,6 +94,7 @@ export default {
       color: $secondary-color;
       margin-bottom: 4px;
       width: 100%;
+      cursor: pointer;
     }
 
     &-description {

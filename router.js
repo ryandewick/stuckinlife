@@ -5,6 +5,7 @@ import Index from "@/pages/Index.vue";
 import Courses from "@/pages/Courses.vue";
 import About from "@/pages/About.vue";
 import AdminDashboard from "@/dashboard/index.vue";
+import IndividualBlog from "@/pages/IndividualBlog.vue";
 
 import { useAuthStore } from "@/stores/authStore";
 
@@ -25,6 +26,11 @@ const routes = [
   {
     path: "/admin",
     component: AdminDashboard,
+  },
+  {
+    path: "/blogs/:id",
+    component: IndividualBlog,
+    name: "blogDetail",
   },
 ];
 
