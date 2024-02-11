@@ -134,7 +134,7 @@
         </div>
       </div>
     </div>
-    <div class="index__blogs-wrapper">
+    <div class="index__blogs-wrapper" v-if="blogs.length > 0">
       <div class="container">
         <div class="index__blogs-header">
           <h2>Latest Blogs</h2>

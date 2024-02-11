@@ -43,17 +43,17 @@ export default {
 @import "@/assets/mixins/_variables.scss";
 @import "@/assets/mixins/_breakpoints.scss";
 .menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
   background-color: rgba(0, 26, 36, 1);
-  z-index: 50;
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
 
   &__item {
-    padding-inline: 80px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-inline: 120px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     font-size: 2rem;
     color: white;
     cursor: pointer;

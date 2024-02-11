@@ -41,6 +41,12 @@
           />
         </div>
       </div>
+      <div v-if="activeTab === 'createBlog'">
+        <h3>Write a blog</h3>
+        <div>
+          <blog-create />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -52,6 +58,7 @@ import { mapActions, mapState } from "pinia";
 
 import sMenu from "@/components/dashboard/Menu.vue";
 import BlogControlCard from "./blogs/BlogControlCard.vue";
+import BlogCreate from "./blogs/BlogCreate.vue";
 
 export default {
   data() {
@@ -67,6 +74,10 @@ export default {
           name: "Blogs",
           tab: "blogs",
         },
+        {
+          name: "Create Blog",
+          tab: "createBlog",
+        },
       ],
       activeTab: "users",
     };
@@ -74,6 +85,7 @@ export default {
   components: {
     sMenu,
     BlogControlCard,
+    BlogCreate,
   },
   methods: {
     ...mapActions(useDashboardStore, {

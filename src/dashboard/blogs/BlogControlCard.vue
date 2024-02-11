@@ -7,12 +7,12 @@
       <div class="blog-control-card__content">
         <div
           class="blog-control-card__content-title"
-          @click="this.$router.push(`/blogs/${blog.id}`)"
+          @click="this.$router.push(`/blogs/${blog.slug}`)"
         >
           {{ blog?.title }}
         </div>
         <div class="blog-control-card__content-description">
-          {{ capLength(blog?.description, 200) }}
+          {{ capLength(blog?.metaDescription, 200) }}
         </div>
         <s-button class="blog-control-card__content-edit" variant="accent">
           Edit

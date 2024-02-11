@@ -28,9 +28,8 @@ const routes = [
     component: AdminDashboard,
   },
   {
-    path: "/blogs/:id",
+    path: "/blogs/:slug",
     component: IndividualBlog,
-    name: "blogDetail",
   },
 ];
 

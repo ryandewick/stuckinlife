@@ -6,10 +6,10 @@
     <div class="blog-card__content">
       <div class="blog-card__title">{{ blog?.title }}</div>
       <div class="blog-card__description">
-        {{ capLength(blog?.description, 50) }}
+        {{ capLength(blog?.metaDescription, 50) }}
       </div>
       <div class="blog-card__read-more">
-        <a :href="`/blogs/${blog.id}`">Read more ></a>
+        <a :href="`/blogs/${blog.slug}`">Read more ></a>
       </div>
     </div>
   </div>

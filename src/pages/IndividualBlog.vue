@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="blog__content">
-        <p class="blog__description">{{ blogData.description }}</p>
+        <section class="blog__description" v-html="blogData.content"></section>
       </div>
     </div>
     <div v-else class="loading">Loading...</div>
@@ -33,19 +33,20 @@ export default {
       return useBlogsStore().blogs;
     },
   },
-  async created() {
-    const blogId = Number(this.$route.params.id);
-    this.blogData = this.blogs.find((blog) => blog.id === blogId);
+  created() {
+    const slug = this.$route.params.slug;
+    this.blogData = this.blogs.find((blog) => blog.slug === slug);
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/mixins/_variables.scss";
+@import "@/assets/mixins/_breakpoints.scss";
 .container {
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
-  font-family: "Arial", sans-serif;
 }
 
 .blog {
@@ -96,15 +97,14 @@ export default {
   }
 
   &__description {
-    font-size: 18px;
     line-height: 1.6;
-    color: #555;
+    color: $secondary-color;
   }
 }
 
 .loading {
   text-align: center;
   font-size: 20px;
-  color: #666;
+  color: $secondary-color;
 }
 </style>
