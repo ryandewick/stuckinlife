@@ -30,6 +30,7 @@ const routes = [
   {
     path: "/blogs/:slug",
     component: IndividualBlog,
+    props: true,
   },
 ];
 

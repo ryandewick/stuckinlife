@@ -1,4 +1,12 @@
 import { defineStore } from "pinia";
+import { db } from "../../firebase.config";
+import {
+  doc,
+  getDocs,
+  setDoc,
+  collection,
+  deleteDoc,
+} from "firebase/firestore";
 
 export const useBlogsStore = defineStore("blogs", {
   state: () => ({
@@ -6,18 +14,32 @@ export const useBlogsStore = defineStore("blogs", {
   }),
 
   actions: {
-    addBlog(blog) {
-      this.blogs.push({
-        id: this.blogs.length + 1,
-        image: blog.image,
-        title: blog.title,
-        metaDescription: blog.metaDescription,
-        content: blog.content,
-        slug: blog.title.toLowerCase().replace(/\s+/g, "-"),
-      });
+    async getBlogs() {
+      try {
+        const blogsRef = collection(db, "blogs");
+        const snapshot = await getDocs(blogsRef);
+        this.blogs = snapshot.docs.map((doc) => doc.data());
+      } catch (error) {
+        console.error("Error getting blogs:", error);
+      }
     },
-    deleteBlog(id) {
-      this.blogs = this.blogs.filter((blog) => blog.id !== id);
+
+    async addBlog(blog) {
+      try {
+        const blogRef = doc(db, "blogs", blog?.id);
+        await setDoc(blogRef, blog);
+      } catch (error) {
+        console.error("Error adding blog:", error);
+      }
+    },
+
+    async deleteBlog(id) {
+      try {
+        const blogRef = doc(db, "blogs", id);
+        await deleteDoc(blogRef);
+      } catch (error) {
+        console.error("Error deleting blog:", error);
+      }
     },
   },
 });

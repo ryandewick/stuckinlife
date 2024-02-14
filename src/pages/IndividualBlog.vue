@@ -3,16 +3,16 @@
     <div v-if="blogData" class="blog">
       <div class="blog__image-container">
         <img
-          :src="blogData.image"
-          :alt="`Image of ${blogData.title}`"
+          :src="blogData?.image"
+          :alt="`Image of ${blogData?.title}`"
           class="blog__image"
         />
         <div class="blog__title-container">
-          <h2 class="blog__title">{{ blogData.title }}</h2>
+          <h2 class="blog__title">{{ blogData?.title }}</h2>
         </div>
       </div>
       <div class="blog__content">
-        <section class="blog__description" v-html="blogData.content"></section>
+        <section class="blog__description" v-html="blogData?.content"></section>
       </div>
     </div>
     <div v-else class="loading">Loading...</div>
@@ -33,9 +33,20 @@ export default {
       return useBlogsStore().blogs;
     },
   },
-  created() {
+  async created() {
     const slug = this.$route.params.slug;
+
+    if (this.blogs.length === 0) {
+      await useBlogsStore().getBlogs();
+    }
     this.blogData = this.blogs.find((blog) => blog.slug === slug);
+
+    document.title = `StuckInLife | ${this.blogData?.title}`;
+    document
+      .getElementsByTagName("meta")
+      .namedItem("description")
+      .setAttribute("content", this.blogData?.metaDescription);
+    console.log(document.head);
   },
 };
 </script>

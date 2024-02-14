@@ -7,6 +7,7 @@
         'button--secondary': variant === 'secondary',
         'button--accent': variant === 'accent',
         'button--outline': variant === 'outline',
+        'button--disabled': disabled,
       },
     ]"
   >
@@ -22,6 +23,10 @@ export default {
       required: true,
       validator: (value) =>
         ["primary", "secondary", "accent", "outline"].includes(value),
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
 };
@@ -81,6 +86,15 @@ export default {
     &:hover,
     &:focus {
       background-color: darken(rgba(17, 94, 124, 0.2), 5%);
+    }
+  }
+  &--disabled {
+    background-color: #c4c4c4;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      background-color: #c4c4c4;
     }
   }
 }

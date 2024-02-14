@@ -81,6 +81,7 @@ export default {
     }),
     async submitForm() {
       const postData = {
+        id: JSON.stringify(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)),
         title: this.formData.title,
         slug: this.formData.title.toLowerCase().replace(/ /g, "-"),
         metaDescription: this.formData.metaDescription,

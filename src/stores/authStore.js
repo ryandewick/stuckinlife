@@ -28,6 +28,7 @@ export const useAuthStore = defineStore({
 
     async checkEmailExists(email) {
       const userDocRef = this.getUserDocRef(email);
+      console.log(userDocRef);
       const userDoc = await getDoc(userDocRef);
       if (userDoc.exists()) {
         this.authError = "This email is already in use.";

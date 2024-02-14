@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar.vue";
 import MainFooter from "@/components/Footer.vue";
 import ContactUs from "@/components/ContactUs.vue";
 import Sidebar from "@/components/Sidebar.vue";
+import { useBlogsStore } from "@/stores/blogs";
 export default {
   name: "App",
   components: {
@@ -27,10 +28,12 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     setTimeout(() => {
       this.showContactUs = true;
     }, 4000);
+
+    await useBlogsStore().getBlogs();
   },
 };
 </script>

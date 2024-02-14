@@ -14,7 +14,11 @@
         <div class="blog-control-card__content-description">
           {{ capLength(blog?.metaDescription, 200) }}
         </div>
-        <s-button class="blog-control-card__content-edit" variant="accent">
+        <s-button
+          class="blog-control-card__content-edit"
+          variant="accent"
+          :disabled="true"
+        >
           Edit
         </s-button>
         <s-button
