@@ -9,7 +9,7 @@
             </div>
             <div class="footer__sign-up-form">
               <input type="text" placeholder="Enter your email address" />
-              <button>Subscribe Now</button>
+              <button type="submit">Subscribe Now</button>
             </div>
           </div>
         </form>
