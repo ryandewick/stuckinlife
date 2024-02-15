@@ -2,7 +2,12 @@
   <div class="footer-wrapper">
     <footer class="footer">
       <div class="container">
-        <form class="footer__sign-up" netlify>
+        <form
+          class="footer__sign-up"
+          name="email-submission"
+          data-netlify="true"
+        >
+          <input type="hidden" name="form-name" value="email" />
           <div class="footer__sign-up-content">
             <div>
               <h3>Subscribe to our newsletter & get more information</h3>
