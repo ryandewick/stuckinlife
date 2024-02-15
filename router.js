@@ -11,19 +11,23 @@ import { useAuthStore } from "@/stores/authStore";
 
 const routes = [
   {
+    name: "Home",
     path: "/",
     // redirect: "/coming-soon",
     component: Index,
   },
   {
+    name: "Courses",
     path: "/courses",
     component: Courses,
   },
   {
+    name: "About Us",
     path: "/about-us",
     component: About,
   },
   {
+    name: "Admin Dashboard",
     path: "/admin",
     component: AdminDashboard,
   },

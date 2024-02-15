@@ -36,10 +36,11 @@ export default {
   async created() {
     const slug = this.$route.params.slug;
 
-    if (this.blogs.length > 0) {
+    if (this.blogs) {
       await useBlogsStore().getBlogs();
     }
-    this.blogData = await this.blogs.find((blog) => blog.slug === slug);
+
+    this.blogData = this.blogs.find((blog) => blog.slug === slug);
 
     document.title = `StuckInLife | ${this.blogData?.title}`;
     document

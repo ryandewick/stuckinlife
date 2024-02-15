@@ -35,6 +35,19 @@ export default {
 
     await useBlogsStore().getBlogs();
   },
+
+  watch: {
+    $route(newVal) {
+      if (
+        newVal.name === "Home" &&
+        newVal.path !== `/blogs/${newVal.params.slug}`
+      ) {
+        document.title = `StuckInLife`;
+      } else {
+        document.title = `StuckInLife | ${newVal.name}`;
+      }
+    },
+  },
 };
 </script>
 
