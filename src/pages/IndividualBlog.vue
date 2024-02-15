@@ -36,17 +36,16 @@ export default {
   async created() {
     const slug = this.$route.params.slug;
 
-    if (this.blogs.length === 0) {
+    if (this.blogs.length > 0) {
       await useBlogsStore().getBlogs();
     }
-    this.blogData = this.blogs.find((blog) => blog.slug === slug);
+    this.blogData = await this.blogs.find((blog) => blog.slug === slug);
 
     document.title = `StuckInLife | ${this.blogData?.title}`;
     document
       .getElementsByTagName("meta")
       .namedItem("description")
       .setAttribute("content", this.blogData?.metaDescription);
-    console.log(document.head);
   },
 };
 </script>

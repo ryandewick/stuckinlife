@@ -37,6 +37,7 @@ export const useBlogsStore = defineStore("blogs", {
       try {
         const blogRef = doc(db, "blogs", id);
         await deleteDoc(blogRef);
+        this.blogs = this.blogs.filter((blog) => blog.id !== id);
       } catch (error) {
         console.error("Error deleting blog:", error);
       }
