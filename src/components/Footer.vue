@@ -2,7 +2,7 @@
   <div class="footer-wrapper">
     <footer class="footer">
       <div class="container">
-        <div class="footer__sign-up">
+        <form class="footer__sign-up" netlify>
           <div class="footer__sign-up-content">
             <div>
               <h3>Subscribe to our newsletter & get more information</h3>
@@ -12,7 +12,7 @@
               <button>Subscribe Now</button>
             </div>
           </div>
-        </div>
+        </form>
         <div class="footer-logo">
           <img src="../assets/stuckinlife.webp" alt="logo" />
           <span>StuckIn<strong>Life</strong></span>

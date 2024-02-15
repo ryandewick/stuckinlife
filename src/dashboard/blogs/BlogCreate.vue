@@ -110,3 +110,11 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.blog-form {
+  &__group {
+    margin-bottom: 16px;
+  }
+}
+</style>
